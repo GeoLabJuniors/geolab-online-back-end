@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeolabOnline", "GeolabOnline\GeolabOnline.csproj", "{E25C00E4-41BC-4281-85D0-E8E30C614FED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geo_Lab_Online", "Geo_Lab_Online\Geo_Lab_Online.csproj", "{2E7C51A7-06C6-4A25-8219-5679107D60F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E25C00E4-41BC-4281-85D0-E8E30C614FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E25C00E4-41BC-4281-85D0-E8E30C614FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E25C00E4-41BC-4281-85D0-E8E30C614FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E25C00E4-41BC-4281-85D0-E8E30C614FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E7C51A7-06C6-4A25-8219-5679107D60F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7C51A7-06C6-4A25-8219-5679107D60F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7C51A7-06C6-4A25-8219-5679107D60F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7C51A7-06C6-4A25-8219-5679107D60F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
