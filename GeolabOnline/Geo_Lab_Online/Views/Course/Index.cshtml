@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Geo_Lab_Online.Models.CoursModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        ახალი კურსის დამატება
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-block">
+        <div class="form-group row">
+            <div class="col-12">
+                <form class="form-horizontal" role="form" method="POST" action="/Course/Add" enctype="multipart/form-data">
+                    <label for="example-text-input" class="col-2 col-form-label">დასახელება</label>
+                    <input class="form-control" name="Title" type="text" id="example-text-input">
+                    <label for="example-text-input" class="col-2 col-form-label">აღწერა</label>
+                    <textarea class="form-control" name="Desc" type="text" id="example-text-input"></textarea>
+                    <label for="example-text-input" class="col-2 col-form-label">ვიდეოს ლინკი</label>
+                    <textarea class="form-control" name="YoutubeLink" type="text" id="example-text-input"></textarea>
+                    <label for="example-text-input" class="col-2 col-form-label">მიმართულება</label>
+                   @Html.DropDownList("Direction", (IEnumerable<SelectListItem>)ViewBag.list, new { id = "ddlLocations", @class = "form-control" })
+
+                    <button type="submit" class="btn btn-primary direction-upload">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YoutubeLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direction)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YoutubeLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direction)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

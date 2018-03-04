@@ -42,7 +42,7 @@ namespace Geo_Lab_Online.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.error = "დაფიქსირდა ხარვეზი ან ყველა ველი არ არის შევსებული";
+                ViewBag.error = "დაფიქსირდა ხარვეზი ან ყველა ველი არ არის შევსებული "+ex.ToString();
                 return View();
             }
         }
