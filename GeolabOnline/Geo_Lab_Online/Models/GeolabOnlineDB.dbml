@@ -11,15 +11,6 @@
       <Association Name="Direction_Course" Member="Direction" ThisKey="DirectionId" OtherKey="ID" Type="Direction" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Direction" Member="Directions">
-    <Type Name="Direction">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DirectionTitle" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DirectionDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="DirectionVideoLink" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Association Name="Direction_Course" Member="Courses" ThisKey="ID" OtherKey="DirectionId" Type="Course" />
-    </Type>
-  </Table>
   <Table Name="dbo.LessonQuiz" Member="LessonQuizs">
     <Type Name="LessonQuiz">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -144,6 +135,16 @@
       <Association Name="User_UserLesson" Member="UserLessons" ThisKey="ID" OtherKey="UserId" Type="UserLesson" />
       <Association Name="User_UserNote" Member="UserNotes" ThisKey="ID" OtherKey="UserId" Type="UserNote" />
       <Association Name="User_UserQuiz" Member="UserQuizs" ThisKey="ID" OtherKey="UserId" Type="UserQuiz" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Direction" Member="Directions">
+    <Type Name="Direction">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DirectionTitle" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DirectionDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DirectionImage" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DirectionImageExt" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Direction_Course" Member="Courses" ThisKey="ID" OtherKey="DirectionId" Type="Course" />
     </Type>
   </Table>
 </Database>

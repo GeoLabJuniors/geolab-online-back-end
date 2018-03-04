@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Geo_Lab_Online.Models.Direction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        ახალი კურსის დამატება
+    </button>
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-block">
+        <div class="form-group row">
+            <div class="col-12">
+                <form class="form-horizontal" role="form" method="POST" action="/Direction/AddDirection" enctype="multipart/form-data">
+                    <label for="example-text-input" class="col-2 col-form-label">დასახელება</label>
+                    <input class="form-control" name="Name" type="text" id="example-text-input">
+                    <label for="example-text-input" class="col-2 col-form-label">აღწერა</label>
+                    <textarea class="form-control" name="Desc" type="text" id="example-text-input"></textarea>
+                    <label for="exampleInputFile">Icon</label>
+                    <input type="File" name="file1" /><br />
+                    <button type="submit" class="btn btn-primary direction-upload">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DirectionTitle)
+        </th>
+       
+        <th>
+     ფოტო
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DirectionTitle)
+            </td>
+           
+            <td>
+                <img src="~/Content/Image/@Html.DisplayFor(modelItem => item.DirectionImage)@Html.DisplayFor(modelItem => item.DirectionImageExt)" width="100px" height="100px">
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

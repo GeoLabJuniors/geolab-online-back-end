@@ -31,7 +31,7 @@ namespace Geo_Lab_Online.Controllers
         }
         #endregion
 
-
+        #region register
         [HttpPost]
         public JsonResult Register(RegisterModel model)
         {
@@ -64,15 +64,21 @@ namespace Geo_Lab_Online.Controllers
                     db.SubmitChanges();
                     try
                     {
-                        System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
-                        mail.IsBodyHtml = false;
-                        mail.From = new System.Net.Mail.MailAddress("fido.osiashvili@gmail.com");
+                        System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage
+                        {
+                            IsBodyHtml = false,
+                            From = new System.Net.Mail.MailAddress("fido.osiashvili@gmail.com")
+                        };
                         mail.To.Add(model.Mail);
                         mail.Subject = "რეგისტრაციის დადასტურება";
-                        mail.Body = "გთხოვთ გადახვიდეთ ლინკზე საიტზე დარეგისტრირებისთვის localhost:52256/User/ActivationUser/" +newUser.ID;
-                        System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient("in-v3.mailjet.com", 587);
-                        smtpClient.Credentials = new System.Net.NetworkCredential("93df9262791d5794a0e185d25f2f8698", "2be81bb40c3fc7a3eca443b76125b9c6");
-                        smtpClient.EnableSsl = false;
+                        mail.Body = "გთხოვთ გადახვიდეთ ლინკზე საიტზე დარეგისტრირებისთვის localhost:52256/User/ActivationUser/" + newUser.ID;
+                        System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient
+                        {
+                            Host = "in-v3.mailjet.com",
+                            Port = 587,
+                            Credentials = new System.Net.NetworkCredential("93df9262791d5794a0e185d25f2f8698", "2be81bb40c3fc7a3eca443b76125b9c6"),
+                            EnableSsl = false
+                        };
                         smtpClient.Send(mail);
                     }
                     catch (Exception) { return Json(1); }
@@ -83,8 +89,8 @@ namespace Geo_Lab_Online.Controllers
             }
             // return Json(1);
         }
-      
-        public ActionResult ActivationUser (string id)
+
+        public ActionResult ActivationUser(string id)
         {
             int userid = Int32.Parse(id);
             var user = db.Users.Where(s => s.ID == userid).FirstOrDefault();
@@ -93,17 +99,19 @@ namespace Geo_Lab_Online.Controllers
             return View();
         }
 
-
+        #endregion
 
         #region facebook
         private Uri RediredtUri
         {
             get
             {
-                var uriBuilder = new UriBuilder(Request.Url);
-                uriBuilder.Query = null;
-                uriBuilder.Fragment = null;
-                uriBuilder.Path = Url.Action("FacebookCallback");
+                var uriBuilder = new UriBuilder(Request.Url)
+                {
+                    Query = null,
+                    Fragment = null,
+                    Path = Url.Action("FacebookCallback")
+                };
                 return uriBuilder.Uri;
             }
         }
@@ -169,12 +177,12 @@ namespace Geo_Lab_Online.Controllers
             else if (loginUser.Status == "F")
             {
                 Session["login_user"] = loginUser;
-               // var text = Session["login_user"];
+                // var text = Session["login_user"];
                 return RedirectToAction("Index", "Home");
             }
             else { return RedirectToAction("Index", "Home"); }
-           
-           
+
+
         }
         #endregion
 

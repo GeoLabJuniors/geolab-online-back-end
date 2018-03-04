@@ -1,0 +1,21 @@
+﻿@model Geo_Lab_Online.Models.Direction
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<form class="form-horizontal" role="form" method="POST" action="/Direction/Edit" enctype="multipart/form-data">
+    <label for="example-text-input" class="col-2 col-form-label">ID</label>
+    <input class="form-control" name="Id" type="text" value="@Model.ID" id="example-text-input" readonly>
+    <label for="example-text-input" class="col-2 col-form-label">დასახელება</label>
+    <input class="form-control" name="Name" type="text" value="@Model.DirectionTitle" id="example-text-input">
+    <label for="example-text-input" class="col-2 col-form-label">აღწერა</label>
+    <textarea class="form-control" name="Desc" type="text" value="@Model.DirectionDesc"  id="example-text-input">@Model.DirectionDesc</textarea>
+    <label for="exampleInputFile">Icon</label>
+    <input type="File" name="file1" /><br />
+    <button type="submit" class="btn btn-primary direction-upload">Submit</button>
+</form>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

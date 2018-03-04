@@ -33,9 +33,6 @@ namespace Geo_Lab_Online.Models
     partial void InsertCourse(Course instance);
     partial void UpdateCourse(Course instance);
     partial void DeleteCourse(Course instance);
-    partial void InsertDirection(Direction instance);
-    partial void UpdateDirection(Direction instance);
-    partial void DeleteDirection(Direction instance);
     partial void InsertLessonQuiz(LessonQuiz instance);
     partial void UpdateLessonQuiz(LessonQuiz instance);
     partial void DeleteLessonQuiz(LessonQuiz instance);
@@ -69,6 +66,9 @@ namespace Geo_Lab_Online.Models
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertDirection(Direction instance);
+    partial void UpdateDirection(Direction instance);
+    partial void DeleteDirection(Direction instance);
     #endregion
 		
 		public GeolabOnlineDBDataContext() : 
@@ -106,14 +106,6 @@ namespace Geo_Lab_Online.Models
 			get
 			{
 				return this.GetTable<Course>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Direction> Directions
-		{
-			get
-			{
-				return this.GetTable<Direction>();
 			}
 		}
 		
@@ -202,6 +194,14 @@ namespace Geo_Lab_Online.Models
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Direction> Directions
+		{
+			get
+			{
+				return this.GetTable<Direction>();
 			}
 		}
 	}
@@ -430,168 +430,6 @@ namespace Geo_Lab_Online.Models
 		{
 			this.SendPropertyChanging();
 			entity.Course = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Direction")]
-	public partial class Direction : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _DirectionTitle;
-		
-		private string _DirectionDesc;
-		
-		private string _DirectionVideoLink;
-		
-		private EntitySet<Course> _Courses;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnDirectionTitleChanging(string value);
-    partial void OnDirectionTitleChanged();
-    partial void OnDirectionDescChanging(string value);
-    partial void OnDirectionDescChanged();
-    partial void OnDirectionVideoLinkChanging(string value);
-    partial void OnDirectionVideoLinkChanged();
-    #endregion
-		
-		public Direction()
-		{
-			this._Courses = new EntitySet<Course>(new Action<Course>(this.attach_Courses), new Action<Course>(this.detach_Courses));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionTitle", DbType="NVarChar(50)")]
-		public string DirectionTitle
-		{
-			get
-			{
-				return this._DirectionTitle;
-			}
-			set
-			{
-				if ((this._DirectionTitle != value))
-				{
-					this.OnDirectionTitleChanging(value);
-					this.SendPropertyChanging();
-					this._DirectionTitle = value;
-					this.SendPropertyChanged("DirectionTitle");
-					this.OnDirectionTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionDesc", DbType="NVarChar(MAX)")]
-		public string DirectionDesc
-		{
-			get
-			{
-				return this._DirectionDesc;
-			}
-			set
-			{
-				if ((this._DirectionDesc != value))
-				{
-					this.OnDirectionDescChanging(value);
-					this.SendPropertyChanging();
-					this._DirectionDesc = value;
-					this.SendPropertyChanged("DirectionDesc");
-					this.OnDirectionDescChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionVideoLink", DbType="VarChar(150)")]
-		public string DirectionVideoLink
-		{
-			get
-			{
-				return this._DirectionVideoLink;
-			}
-			set
-			{
-				if ((this._DirectionVideoLink != value))
-				{
-					this.OnDirectionVideoLinkChanging(value);
-					this.SendPropertyChanging();
-					this._DirectionVideoLink = value;
-					this.SendPropertyChanged("DirectionVideoLink");
-					this.OnDirectionVideoLinkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Direction_Course", Storage="_Courses", ThisKey="ID", OtherKey="DirectionId")]
-		public EntitySet<Course> Courses
-		{
-			get
-			{
-				return this._Courses;
-			}
-			set
-			{
-				this._Courses.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Courses(Course entity)
-		{
-			this.SendPropertyChanging();
-			entity.Direction = this;
-		}
-		
-		private void detach_Courses(Course entity)
-		{
-			this.SendPropertyChanging();
-			entity.Direction = null;
 		}
 	}
 	
@@ -3310,6 +3148,192 @@ namespace Geo_Lab_Online.Models
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Direction")]
+	public partial class Direction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _DirectionTitle;
+		
+		private string _DirectionDesc;
+		
+		private string _DirectionImage;
+		
+		private string _DirectionImageExt;
+		
+		private EntitySet<Course> _Courses;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnDirectionTitleChanging(string value);
+    partial void OnDirectionTitleChanged();
+    partial void OnDirectionDescChanging(string value);
+    partial void OnDirectionDescChanged();
+    partial void OnDirectionImageChanging(string value);
+    partial void OnDirectionImageChanged();
+    partial void OnDirectionImageExtChanging(string value);
+    partial void OnDirectionImageExtChanged();
+    #endregion
+		
+		public Direction()
+		{
+			this._Courses = new EntitySet<Course>(new Action<Course>(this.attach_Courses), new Action<Course>(this.detach_Courses));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionTitle", DbType="NVarChar(50)")]
+		public string DirectionTitle
+		{
+			get
+			{
+				return this._DirectionTitle;
+			}
+			set
+			{
+				if ((this._DirectionTitle != value))
+				{
+					this.OnDirectionTitleChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionTitle = value;
+					this.SendPropertyChanged("DirectionTitle");
+					this.OnDirectionTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionDesc", DbType="NVarChar(MAX)")]
+		public string DirectionDesc
+		{
+			get
+			{
+				return this._DirectionDesc;
+			}
+			set
+			{
+				if ((this._DirectionDesc != value))
+				{
+					this.OnDirectionDescChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionDesc = value;
+					this.SendPropertyChanged("DirectionDesc");
+					this.OnDirectionDescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionImage", DbType="VarChar(150)")]
+		public string DirectionImage
+		{
+			get
+			{
+				return this._DirectionImage;
+			}
+			set
+			{
+				if ((this._DirectionImage != value))
+				{
+					this.OnDirectionImageChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionImage = value;
+					this.SendPropertyChanged("DirectionImage");
+					this.OnDirectionImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionImageExt", DbType="VarChar(10)")]
+		public string DirectionImageExt
+		{
+			get
+			{
+				return this._DirectionImageExt;
+			}
+			set
+			{
+				if ((this._DirectionImageExt != value))
+				{
+					this.OnDirectionImageExtChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionImageExt = value;
+					this.SendPropertyChanged("DirectionImageExt");
+					this.OnDirectionImageExtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Direction_Course", Storage="_Courses", ThisKey="ID", OtherKey="DirectionId")]
+		public EntitySet<Course> Courses
+		{
+			get
+			{
+				return this._Courses;
+			}
+			set
+			{
+				this._Courses.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Courses(Course entity)
+		{
+			this.SendPropertyChanging();
+			entity.Direction = this;
+		}
+		
+		private void detach_Courses(Course entity)
+		{
+			this.SendPropertyChanging();
+			entity.Direction = null;
 		}
 	}
 }

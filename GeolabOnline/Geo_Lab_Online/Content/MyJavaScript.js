@@ -16,6 +16,7 @@
             data: model
         });
     });
+
     $('.logintest').click(function () {
         console.log('sss');
         if ($('#userPassword').val() != $('#userPasswordcon').val()) {

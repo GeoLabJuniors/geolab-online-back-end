@@ -1,41 +1,43 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<input type="text" id="userPasswordcon" class="form-control input-sm chat-input" placeholder="username" />
-<br>
-<input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
-<br>
-<div class="wrapper">
-    <span class="group-btn">
-        <a href="#" class="btn btn-primary btn-md logintest">login <i class="fa fa-sign-in"></i></a>
-    </span>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/MyJavaScript.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
+</head>
+<body>
 
+    <div class="container body-content">
 
-<table class="table table-bordered">
-    <thead>
-        <tr class="success">
-            <th>
-                Social Logins
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-     
-        <tr>
-            <td>
-                <input type="button" id="btnFacebookLogin"
-                       value="Login with Facebook" class="btn btn-success" />
+        <input type="text" id="userPasswordcon" class="form-control input-sm chat-input" placeholder="username" />
+        <br>
+        <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
+        <br>
+        <div class="wrapper">
+            <span class="group-btn">
+                <a href="#" class="btn btn-primary btn-md logintest">login <i class="fa fa-sign-in"></i></a>
                 @Html.ActionLink("Login with facebook", "Facebook", "User")
-            </td>
-        </tr>
-    </tbody>
-</table>
+            </span>
+        </div>
+
+
+        <hr />
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+ 
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿@model Geo_Lab_Online.Models.Direction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectionTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirectionTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirectionDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirectionDesc)
+        </dd>
+
+        <dt>
+            ფოტო
+        </dt>
+
+        <dd>
+            <img src="~/Content/Image/@Html.DisplayFor(modelItem => Model.DirectionImage)@Html.DisplayFor(modelItem => Model.DirectionImageExt)" width="100px" height="100px">
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
