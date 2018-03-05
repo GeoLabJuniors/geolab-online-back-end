@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Direction</h2>
 
 <p>
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -29,7 +29,11 @@
 
     </div>
 </div>
-<table class="table">
+
+
+
+
+<table class="table" >
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.DirectionTitle)
@@ -49,7 +53,7 @@
             </td>
            
             <td>
-                <img src="~/Content/Image/@Html.DisplayFor(modelItem => item.DirectionImage)@Html.DisplayFor(modelItem => item.DirectionImageExt)" width="100px" height="100px">
+                <img src="~/Content/Image/@Html.DisplayFor(modelItem => item.DirectionImage)@Html.DisplayFor(modelItem => item.DirectionImageExt)" style="width: 100px;height: 100px;" >
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

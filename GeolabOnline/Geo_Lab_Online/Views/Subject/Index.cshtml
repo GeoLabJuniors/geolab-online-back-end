@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Geo_Lab_Online.Models.CoursModel>
+﻿@model IEnumerable<Geo_Lab_Online.Models.SubjectModel>
 
 @{
     ViewBag.Title = "Index";
-    
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Cours</h2>
+<h2>Subject</h2>
 
 <p>
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -16,7 +16,7 @@
     <div class="card card-block">
         <div class="form-group row">
             <div class="col-12">
-                <form class="form-horizontal" role="form" method="POST" action="/Course/Add" enctype="multipart/form-data">
+                <form class="form-horizontal" role="form" method="POST" action="/Subject/Add" enctype="multipart/form-data">
                     <label for="example-text-input" class="col-2 col-form-label">დასახელება</label>
                     <input class="form-control" name="Title" type="text" id="example-text-input">
                     <label for="example-text-input" class="col-2 col-form-label">აღწერა</label>
@@ -24,7 +24,7 @@
                     <label for="example-text-input" class="col-2 col-form-label">ვიდეოს ლინკი</label>
                     <textarea class="form-control" name="YoutubeLink" type="text" id="example-text-input"></textarea>
                     <label for="example-text-input" class="col-2 col-form-label">მიმართულება</label>
-                   @Html.DropDownList("Direction", (IEnumerable<SelectListItem>)ViewBag.list, new { id = "ddlLocations", @class = "form-control" })
+                    @Html.DropDownList("Cours", (IEnumerable<SelectListItem>)ViewBag.list, new { id = "ddlLocations", @class = "form-control" })
 
                     <button type="submit" class="btn btn-primary direction-upload">Submit</button>
                 </form>
@@ -34,15 +34,7 @@
     </div>
 </div>
 
-@Ajax.ActionLink("დიზაინის კურსები", "Index1",  new { s="s"}, new AjaxOptions()
-{
-    HttpMethod = "Get",
-    UpdateTargetId = "CourseTable",
-    InsertionMode = InsertionMode.Replace
-})
-
-
-<table class="table" id="CourseTable">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -54,7 +46,7 @@
             @Html.DisplayNameFor(model => model.YoutubeLink)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Direction)
+            @Html.DisplayNameFor(model => model.Cours)
         </th>
         <th></th>
     </tr>
@@ -71,11 +63,11 @@
             @Html.DisplayFor(modelItem => item.YoutubeLink)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Direction)
+            @Html.DisplayFor(modelItem => item.Cours)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Detail", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

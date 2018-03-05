@@ -1,4 +1,5 @@
-﻿using Geo_Lab_Online.Models;
+﻿using Geo_Lab_Online.Filter;
+using Geo_Lab_Online.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Geo_Lab_Online.Controllers
 {
+    //[AutorizationFilter]
     public class DirectionController : Controller
     {
         GeolabOnlineDBDataContext db = new GeolabOnlineDBDataContext();
@@ -17,32 +19,49 @@ namespace Geo_Lab_Online.Controllers
 
             return View(db.Directions.ToList());
         }
+
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddDirection(NewDirection direction)
         {
             try
             {
-                Direction NewIcon = new Direction();
-                string ext = Path.GetExtension(direction.File1.FileName);
-                string name = RandomString32();
-                string url = Server.MapPath("~/Content/Image/" + name + ext);
+                if (direction.File1 == null)
+                {
+                    Direction NewIcon = new Direction()
+                    {
+                        DirectionTitle = direction.Name,
+                        DirectionDesc = direction.Desc
+                    };
+
+                    db.Directions.InsertOnSubmit(NewIcon);
+                    db.SubmitChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Direction NewIcon = new Direction();
+                    string ext = Path.GetExtension(direction.File1.FileName);
+                    string name = RandomString32();
+                    string url = Server.MapPath("~/Content/Image/" + name + ext);
 
 
-                NewIcon.DirectionTitle = direction.Name;
-                NewIcon.DirectionDesc = direction.Desc;
-                NewIcon.DirectionImage = name;
+                    NewIcon.DirectionTitle = direction.Name;
+                    NewIcon.DirectionDesc = direction.Desc;
+                    NewIcon.DirectionImage = name;
 
-                NewIcon.DirectionImageExt = ext;
-                db.Directions.InsertOnSubmit(NewIcon);
-                db.SubmitChanges();
-                direction.File1.SaveAs(url);
+                    NewIcon.DirectionImageExt = ext;
+                    db.Directions.InsertOnSubmit(NewIcon);
+                    db.SubmitChanges();
+                    direction.File1.SaveAs(url);
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
             }
             catch (Exception ex)
             {
-                ViewBag.error = "დაფიქსირდა ხარვეზი ან ყველა ველი არ არის შევსებული "+ex.ToString();
+                ViewBag.error = "დაფიქსირდა ხარვეზი ან ყველა ველი არ არის შევსებული " + ex.ToString();
                 return View();
             }
         }
@@ -77,7 +96,7 @@ namespace Geo_Lab_Online.Controllers
                 string name = RandomString32();
                 string url = Server.MapPath("~/Content/Image/" + name + ext);
 
-                update_post.DirectionTitle = s.Name; update_post.DirectionDesc=s.Desc ; update_post.DirectionImage = name; update_post.DirectionImageExt = ext;
+                update_post.DirectionTitle = s.Name; update_post.DirectionDesc = s.Desc; update_post.DirectionImage = name; update_post.DirectionImageExt = ext;
                 db.SubmitChanges();
                 s.File1.SaveAs(url);
             }

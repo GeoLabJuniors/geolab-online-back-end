@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Content/MyJavaScript.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
@@ -11,21 +13,18 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+  
 
       
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="~/Direction/Index">Direction <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="~/Course/Index"></a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link" href="#">Disabled</a>
+        
+            <div class="navbar-nav float-left ">
+                <a class="nav-item btn  btn-danger nav-link" href="~/Direction/Index">Direction <span class="sr-only">(current)</span></a>
+                <a class="nav-item btn  btn-danger nav-link" href="~/Course/Index">Course</a>
+                <a class="nav-item btn  btn-danger nav-link" href="~/Subject/index">Subject</a>
+                <a class="nav-item btn  btn-danger nav-link" href="~/Student/index">Student</a>
             </div>
-        </div>
-    </nav>
+        
+    
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -1,0 +1,51 @@
+﻿@model Geo_Lab_Online.Models.Subject
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubjectTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubjectTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubjectDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubjectDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubjectVideoLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubjectVideoLink)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

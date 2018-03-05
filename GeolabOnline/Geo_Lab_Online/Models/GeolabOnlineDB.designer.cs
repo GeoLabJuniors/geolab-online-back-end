@@ -33,6 +33,12 @@ namespace Geo_Lab_Online.Models
     partial void InsertCourse(Course instance);
     partial void UpdateCourse(Course instance);
     partial void DeleteCourse(Course instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertDirection(Direction instance);
+    partial void UpdateDirection(Direction instance);
+    partial void DeleteDirection(Direction instance);
     partial void InsertLessonQuiz(LessonQuiz instance);
     partial void UpdateLessonQuiz(LessonQuiz instance);
     partial void DeleteLessonQuiz(LessonQuiz instance);
@@ -63,12 +69,6 @@ namespace Geo_Lab_Online.Models
     partial void InsertUserQuiz(UserQuiz instance);
     partial void UpdateUserQuiz(UserQuiz instance);
     partial void DeleteUserQuiz(UserQuiz instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
-    partial void InsertDirection(Direction instance);
-    partial void UpdateDirection(Direction instance);
-    partial void DeleteDirection(Direction instance);
     #endregion
 		
 		public GeolabOnlineDBDataContext() : 
@@ -106,6 +106,22 @@ namespace Geo_Lab_Online.Models
 			get
 			{
 				return this.GetTable<Course>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Direction> Directions
+		{
+			get
+			{
+				return this.GetTable<Direction>();
 			}
 		}
 		
@@ -186,22 +202,6 @@ namespace Geo_Lab_Online.Models
 			get
 			{
 				return this.GetTable<UserQuiz>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Direction> Directions
-		{
-			get
-			{
-				return this.GetTable<Direction>();
 			}
 		}
 	}
@@ -353,7 +353,7 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Subject", Storage="_Subjects", ThisKey="ID", OtherKey="ProgramID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Subject", Storage="_Subjects", ThisKey="ID", OtherKey="CourseID")]
 		public EntitySet<Subject> Subjects
 		{
 			get
@@ -430,6 +430,562 @@ namespace Geo_Lab_Online.Models
 		{
 			this.SendPropertyChanging();
 			entity.Course = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _UserName;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _Email;
+		
+		private string _Status;
+		
+		private string _Password;
+		
+		private System.Nullable<System.DateTime> _CreateDate;
+		
+		private EntitySet<UserCode> _UserCodes;
+		
+		private EntitySet<UserCurse> _UserCurses;
+		
+		private EntitySet<UserLesson> _UserLessons;
+		
+		private EntitySet<UserNote> _UserNotes;
+		
+		private EntitySet<UserQuiz> _UserQuizs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnCreateDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreateDateChanged();
+    #endregion
+		
+		public User()
+		{
+			this._UserCodes = new EntitySet<UserCode>(new Action<UserCode>(this.attach_UserCodes), new Action<UserCode>(this.detach_UserCodes));
+			this._UserCurses = new EntitySet<UserCurse>(new Action<UserCurse>(this.attach_UserCurses), new Action<UserCurse>(this.detach_UserCurses));
+			this._UserLessons = new EntitySet<UserLesson>(new Action<UserLesson>(this.attach_UserLessons), new Action<UserLesson>(this.detach_UserLessons));
+			this._UserNotes = new EntitySet<UserNote>(new Action<UserNote>(this.attach_UserNotes), new Action<UserNote>(this.detach_UserNotes));
+			this._UserQuizs = new EntitySet<UserQuiz>(new Action<UserQuiz>(this.attach_UserQuizs), new Action<UserQuiz>(this.detach_UserQuizs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this.OnLastNameChanging(value);
+					this.SendPropertyChanging();
+					this._LastName = value;
+					this.SendPropertyChanged("LastName");
+					this.OnLastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="Date")]
+		public System.Nullable<System.DateTime> CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserCode", Storage="_UserCodes", ThisKey="ID", OtherKey="UserId")]
+		public EntitySet<UserCode> UserCodes
+		{
+			get
+			{
+				return this._UserCodes;
+			}
+			set
+			{
+				this._UserCodes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserCurse", Storage="_UserCurses", ThisKey="ID", OtherKey="UserId")]
+		public EntitySet<UserCurse> UserCurses
+		{
+			get
+			{
+				return this._UserCurses;
+			}
+			set
+			{
+				this._UserCurses.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserLesson", Storage="_UserLessons", ThisKey="ID", OtherKey="UserId")]
+		public EntitySet<UserLesson> UserLessons
+		{
+			get
+			{
+				return this._UserLessons;
+			}
+			set
+			{
+				this._UserLessons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserNote", Storage="_UserNotes", ThisKey="ID", OtherKey="UserId")]
+		public EntitySet<UserNote> UserNotes
+		{
+			get
+			{
+				return this._UserNotes;
+			}
+			set
+			{
+				this._UserNotes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserQuiz", Storage="_UserQuizs", ThisKey="ID", OtherKey="UserId")]
+		public EntitySet<UserQuiz> UserQuizs
+		{
+			get
+			{
+				return this._UserQuizs;
+			}
+			set
+			{
+				this._UserQuizs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserCodes(UserCode entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserCodes(UserCode entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserCurses(UserCurse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserCurses(UserCurse entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserLessons(UserLesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserLessons(UserLesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserNotes(UserNote entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserNotes(UserNote entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_UserQuizs(UserQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_UserQuizs(UserQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Direction")]
+	public partial class Direction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _DirectionTitle;
+		
+		private string _DirectionDesc;
+		
+		private string _DirectionImage;
+		
+		private string _DirectionImageExt;
+		
+		private EntitySet<Course> _Courses;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnDirectionTitleChanging(string value);
+    partial void OnDirectionTitleChanged();
+    partial void OnDirectionDescChanging(string value);
+    partial void OnDirectionDescChanged();
+    partial void OnDirectionImageChanging(string value);
+    partial void OnDirectionImageChanged();
+    partial void OnDirectionImageExtChanging(string value);
+    partial void OnDirectionImageExtChanged();
+    #endregion
+		
+		public Direction()
+		{
+			this._Courses = new EntitySet<Course>(new Action<Course>(this.attach_Courses), new Action<Course>(this.detach_Courses));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionTitle", DbType="NVarChar(50)")]
+		public string DirectionTitle
+		{
+			get
+			{
+				return this._DirectionTitle;
+			}
+			set
+			{
+				if ((this._DirectionTitle != value))
+				{
+					this.OnDirectionTitleChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionTitle = value;
+					this.SendPropertyChanged("DirectionTitle");
+					this.OnDirectionTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionDesc", DbType="NVarChar(MAX)")]
+		public string DirectionDesc
+		{
+			get
+			{
+				return this._DirectionDesc;
+			}
+			set
+			{
+				if ((this._DirectionDesc != value))
+				{
+					this.OnDirectionDescChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionDesc = value;
+					this.SendPropertyChanged("DirectionDesc");
+					this.OnDirectionDescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionImage", DbType="VarChar(150)")]
+		public string DirectionImage
+		{
+			get
+			{
+				return this._DirectionImage;
+			}
+			set
+			{
+				if ((this._DirectionImage != value))
+				{
+					this.OnDirectionImageChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionImage = value;
+					this.SendPropertyChanged("DirectionImage");
+					this.OnDirectionImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionImageExt", DbType="VarChar(10)")]
+		public string DirectionImageExt
+		{
+			get
+			{
+				return this._DirectionImageExt;
+			}
+			set
+			{
+				if ((this._DirectionImageExt != value))
+				{
+					this.OnDirectionImageExtChanging(value);
+					this.SendPropertyChanging();
+					this._DirectionImageExt = value;
+					this.SendPropertyChanged("DirectionImageExt");
+					this.OnDirectionImageExtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Direction_Course", Storage="_Courses", ThisKey="ID", OtherKey="DirectionId")]
+		public EntitySet<Course> Courses
+		{
+			get
+			{
+				return this._Courses;
+			}
+			set
+			{
+				this._Courses.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Courses(Course entity)
+		{
+			this.SendPropertyChanging();
+			entity.Direction = this;
+		}
+		
+		private void detach_Courses(Course entity)
+		{
+			this.SendPropertyChanging();
+			entity.Direction = null;
 		}
 	}
 	
@@ -1437,7 +1993,7 @@ namespace Geo_Lab_Online.Models
 		
 		private int _ID;
 		
-		private int _ProgramID;
+		private int _CourseID;
 		
 		private string _SubjectTitle;
 		
@@ -1457,8 +2013,8 @@ namespace Geo_Lab_Online.Models
     partial void OnCreated();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
-    partial void OnProgramIDChanging(int value);
-    partial void OnProgramIDChanged();
+    partial void OnCourseIDChanging(int value);
+    partial void OnCourseIDChanged();
     partial void OnSubjectTitleChanging(string value);
     partial void OnSubjectTitleChanged();
     partial void OnSubjectDescChanging(string value);
@@ -1495,26 +2051,26 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProgramID", DbType="Int NOT NULL")]
-		public int ProgramID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CourseID", DbType="Int NOT NULL")]
+		public int CourseID
 		{
 			get
 			{
-				return this._ProgramID;
+				return this._CourseID;
 			}
 			set
 			{
-				if ((this._ProgramID != value))
+				if ((this._CourseID != value))
 				{
 					if (this._Course.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnProgramIDChanging(value);
+					this.OnCourseIDChanging(value);
 					this.SendPropertyChanging();
-					this._ProgramID = value;
-					this.SendPropertyChanged("ProgramID");
-					this.OnProgramIDChanged();
+					this._CourseID = value;
+					this.SendPropertyChanged("CourseID");
+					this.OnCourseIDChanged();
 				}
 			}
 		}
@@ -1592,7 +2148,7 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_UserCurse", Storage="_UserCurses", ThisKey="ID", OtherKey="CurseId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_UserCurse", Storage="_UserCurses", ThisKey="ID", OtherKey="SubjectId")]
 		public EntitySet<UserCurse> UserCurses
 		{
 			get
@@ -1605,7 +2161,7 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Subject", Storage="_Course", ThisKey="ProgramID", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Course_Subject", Storage="_Course", ThisKey="CourseID", OtherKey="ID", IsForeignKey=true)]
 		public Course Course
 		{
 			get
@@ -1628,11 +2184,11 @@ namespace Geo_Lab_Online.Models
 					if ((value != null))
 					{
 						value.Subjects.Add(this);
-						this._ProgramID = value.ID;
+						this._CourseID = value.ID;
 					}
 					else
 					{
-						this._ProgramID = default(int);
+						this._CourseID = default(int);
 					}
 					this.SendPropertyChanged("Course");
 				}
@@ -1908,7 +2464,7 @@ namespace Geo_Lab_Online.Models
 		
 		private int _UserId;
 		
-		private int _CurseId;
+		private int _SubjectId;
 		
 		private int _ID;
 		
@@ -1922,8 +2478,8 @@ namespace Geo_Lab_Online.Models
     partial void OnCreated();
     partial void OnUserIdChanging(int value);
     partial void OnUserIdChanged();
-    partial void OnCurseIdChanging(int value);
-    partial void OnCurseIdChanged();
+    partial void OnSubjectIdChanging(int value);
+    partial void OnSubjectIdChanged();
     partial void OnIDChanging(int value);
     partial void OnIDChanged();
     #endregion
@@ -1959,26 +2515,26 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurseId", DbType="Int NOT NULL")]
-		public int CurseId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectId", DbType="Int NOT NULL")]
+		public int SubjectId
 		{
 			get
 			{
-				return this._CurseId;
+				return this._SubjectId;
 			}
 			set
 			{
-				if ((this._CurseId != value))
+				if ((this._SubjectId != value))
 				{
 					if (this._Subject.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCurseIdChanging(value);
+					this.OnSubjectIdChanging(value);
 					this.SendPropertyChanging();
-					this._CurseId = value;
-					this.SendPropertyChanged("CurseId");
-					this.OnCurseIdChanged();
+					this._SubjectId = value;
+					this.SendPropertyChanged("SubjectId");
+					this.OnSubjectIdChanged();
 				}
 			}
 		}
@@ -2003,7 +2559,7 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_UserCurse", Storage="_Subject", ThisKey="CurseId", OtherKey="ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_UserCurse", Storage="_Subject", ThisKey="SubjectId", OtherKey="ID", IsForeignKey=true)]
 		public Subject Subject
 		{
 			get
@@ -2026,11 +2582,11 @@ namespace Geo_Lab_Online.Models
 					if ((value != null))
 					{
 						value.UserCurses.Add(this);
-						this._CurseId = value.ID;
+						this._SubjectId = value.ID;
 					}
 					else
 					{
-						this._CurseId = default(int);
+						this._SubjectId = default(int);
 					}
 					this.SendPropertyChanged("Subject");
 				}
@@ -2778,562 +3334,6 @@ namespace Geo_Lab_Online.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _UserName;
-		
-		private string _FirstName;
-		
-		private string _LastName;
-		
-		private string _Email;
-		
-		private string _Status;
-		
-		private string _Password;
-		
-		private System.Nullable<System.DateTime> _CreateDate;
-		
-		private EntitySet<UserCode> _UserCodes;
-		
-		private EntitySet<UserCurse> _UserCurses;
-		
-		private EntitySet<UserLesson> _UserLessons;
-		
-		private EntitySet<UserNote> _UserNotes;
-		
-		private EntitySet<UserQuiz> _UserQuizs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnLastNameChanging(string value);
-    partial void OnLastNameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnCreateDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreateDateChanged();
-    #endregion
-		
-		public User()
-		{
-			this._UserCodes = new EntitySet<UserCode>(new Action<UserCode>(this.attach_UserCodes), new Action<UserCode>(this.detach_UserCodes));
-			this._UserCurses = new EntitySet<UserCurse>(new Action<UserCurse>(this.attach_UserCurses), new Action<UserCurse>(this.detach_UserCurses));
-			this._UserLessons = new EntitySet<UserLesson>(new Action<UserLesson>(this.attach_UserLessons), new Action<UserLesson>(this.detach_UserLessons));
-			this._UserNotes = new EntitySet<UserNote>(new Action<UserNote>(this.attach_UserNotes), new Action<UserNote>(this.detach_UserNotes));
-			this._UserQuizs = new EntitySet<UserQuiz>(new Action<UserQuiz>(this.attach_UserQuizs), new Action<UserQuiz>(this.detach_UserQuizs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(50)")]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(50)")]
-		public string LastName
-		{
-			get
-			{
-				return this._LastName;
-			}
-			set
-			{
-				if ((this._LastName != value))
-				{
-					this.OnLastNameChanging(value);
-					this.SendPropertyChanging();
-					this._LastName = value;
-					this.SendPropertyChanged("LastName");
-					this.OnLastNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(50)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="Date")]
-		public System.Nullable<System.DateTime> CreateDate
-		{
-			get
-			{
-				return this._CreateDate;
-			}
-			set
-			{
-				if ((this._CreateDate != value))
-				{
-					this.OnCreateDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreateDate = value;
-					this.SendPropertyChanged("CreateDate");
-					this.OnCreateDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserCode", Storage="_UserCodes", ThisKey="ID", OtherKey="UserId")]
-		public EntitySet<UserCode> UserCodes
-		{
-			get
-			{
-				return this._UserCodes;
-			}
-			set
-			{
-				this._UserCodes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserCurse", Storage="_UserCurses", ThisKey="ID", OtherKey="UserId")]
-		public EntitySet<UserCurse> UserCurses
-		{
-			get
-			{
-				return this._UserCurses;
-			}
-			set
-			{
-				this._UserCurses.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserLesson", Storage="_UserLessons", ThisKey="ID", OtherKey="UserId")]
-		public EntitySet<UserLesson> UserLessons
-		{
-			get
-			{
-				return this._UserLessons;
-			}
-			set
-			{
-				this._UserLessons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserNote", Storage="_UserNotes", ThisKey="ID", OtherKey="UserId")]
-		public EntitySet<UserNote> UserNotes
-		{
-			get
-			{
-				return this._UserNotes;
-			}
-			set
-			{
-				this._UserNotes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserQuiz", Storage="_UserQuizs", ThisKey="ID", OtherKey="UserId")]
-		public EntitySet<UserQuiz> UserQuizs
-		{
-			get
-			{
-				return this._UserQuizs;
-			}
-			set
-			{
-				this._UserQuizs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserCodes(UserCode entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserCodes(UserCode entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserCurses(UserCurse entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserCurses(UserCurse entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserLessons(UserLesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserLessons(UserLesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserNotes(UserNote entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserNotes(UserNote entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_UserQuizs(UserQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_UserQuizs(UserQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Direction")]
-	public partial class Direction : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _DirectionTitle;
-		
-		private string _DirectionDesc;
-		
-		private string _DirectionImage;
-		
-		private string _DirectionImageExt;
-		
-		private EntitySet<Course> _Courses;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnDirectionTitleChanging(string value);
-    partial void OnDirectionTitleChanged();
-    partial void OnDirectionDescChanging(string value);
-    partial void OnDirectionDescChanged();
-    partial void OnDirectionImageChanging(string value);
-    partial void OnDirectionImageChanged();
-    partial void OnDirectionImageExtChanging(string value);
-    partial void OnDirectionImageExtChanged();
-    #endregion
-		
-		public Direction()
-		{
-			this._Courses = new EntitySet<Course>(new Action<Course>(this.attach_Courses), new Action<Course>(this.detach_Courses));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionTitle", DbType="NVarChar(50)")]
-		public string DirectionTitle
-		{
-			get
-			{
-				return this._DirectionTitle;
-			}
-			set
-			{
-				if ((this._DirectionTitle != value))
-				{
-					this.OnDirectionTitleChanging(value);
-					this.SendPropertyChanging();
-					this._DirectionTitle = value;
-					this.SendPropertyChanged("DirectionTitle");
-					this.OnDirectionTitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionDesc", DbType="NVarChar(MAX)")]
-		public string DirectionDesc
-		{
-			get
-			{
-				return this._DirectionDesc;
-			}
-			set
-			{
-				if ((this._DirectionDesc != value))
-				{
-					this.OnDirectionDescChanging(value);
-					this.SendPropertyChanging();
-					this._DirectionDesc = value;
-					this.SendPropertyChanged("DirectionDesc");
-					this.OnDirectionDescChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionImage", DbType="VarChar(150)")]
-		public string DirectionImage
-		{
-			get
-			{
-				return this._DirectionImage;
-			}
-			set
-			{
-				if ((this._DirectionImage != value))
-				{
-					this.OnDirectionImageChanging(value);
-					this.SendPropertyChanging();
-					this._DirectionImage = value;
-					this.SendPropertyChanged("DirectionImage");
-					this.OnDirectionImageChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectionImageExt", DbType="VarChar(10)")]
-		public string DirectionImageExt
-		{
-			get
-			{
-				return this._DirectionImageExt;
-			}
-			set
-			{
-				if ((this._DirectionImageExt != value))
-				{
-					this.OnDirectionImageExtChanging(value);
-					this.SendPropertyChanging();
-					this._DirectionImageExt = value;
-					this.SendPropertyChanged("DirectionImageExt");
-					this.OnDirectionImageExtChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Direction_Course", Storage="_Courses", ThisKey="ID", OtherKey="DirectionId")]
-		public EntitySet<Course> Courses
-		{
-			get
-			{
-				return this._Courses;
-			}
-			set
-			{
-				this._Courses.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Courses(Course entity)
-		{
-			this.SendPropertyChanging();
-			entity.Direction = this;
-		}
-		
-		private void detach_Courses(Course entity)
-		{
-			this.SendPropertyChanging();
-			entity.Direction = null;
 		}
 	}
 }
