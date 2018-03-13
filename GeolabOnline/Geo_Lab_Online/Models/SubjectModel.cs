@@ -14,5 +14,6 @@ namespace Geo_Lab_Online.Models
         [Display(Name = "ვიდეოს ლინკი")]
         public string YoutubeLink { get; set; }
         public String Cours { get; set; }
+        //public string func() { return "ss"; }
     }
 }

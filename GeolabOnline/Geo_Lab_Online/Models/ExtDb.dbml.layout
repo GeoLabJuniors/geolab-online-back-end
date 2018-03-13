@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.125, 11.625" name="ExtDb">
+  <DataContextMoniker Name="/ExtDbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8b483c2e-b686-48f7-854d-5099c33defab" absoluteBounds="0.75, 1, 2, 3.1170068359375009">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9ebda7ae-4841-44cc-bb35-c9d11d138613" absoluteBounds="0.765, 1.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6c6b2596-3958-44b7-84ee-37247d6a0a12" absoluteBounds="3.5, 1.625, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtUser_Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="08a71396-826c-470a-ae37-4a54c0c4e7d9" absoluteBounds="3.515, 2.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a3fc2515-6928-44aa-beea-1da4cb7b96b5" absoluteBounds="3.375, 5, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtDirection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aeb17611-9ef7-4bf8-b07e-ea26f1f9f761" absoluteBounds="3.39, 5.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="02c9607c-33c7-411e-8928-ffa741da7b38" absoluteBounds="6.125, 4.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtDirection_Tran" />
+      <nestedChildShapes>
+        <elementListCompartment Id="deaafc6c-8385-4b71-a975-22b901e67f24" absoluteBounds="6.14, 5.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9fabb251-4f1a-498e-9c6f-8358cba82fa0" absoluteBounds="6.125, 8.625, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtCourse" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1454e677-c35e-4cb2-b194-9b8d8242e583" absoluteBounds="6.14, 9.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="02e5f856-89ee-4e90-85ad-59eb5f927a5b" absoluteBounds="8.875, 9.125, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtCourse_Tran" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e943e05f-e99f-4e34-a13b-f09791fe54be" absoluteBounds="8.89, 9.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d4c87bbb-956a-4b74-bdd9-72f1d70fcb46" absoluteBounds="9.125, 1.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtSubject_Tran" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aaa84fa0-eab1-4320-9d8a-8688fcc4ed18" absoluteBounds="9.14, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c947467c-f4a5-4ebd-b52e-3172fb9256d1" absoluteBounds="6.375, 0.875, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtSubject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="79ae05df-3b95-45bc-80f7-ec955238d67b" absoluteBounds="6.39, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="17f32061-7ca1-4e87-8633-d6adf36d156d" absoluteBounds="9.75, 4.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtCourse_Subject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="338e06ca-0d62-452f-b0a8-abe89df542a8" absoluteBounds="9.765, 4.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.51044840494792); (3.5 : 2.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtUser/ExtUser_ExtUser_Category" />
+      <nodes>
+        <classShapeMoniker Id="8b483c2e-b686-48f7-854d-5099c33defab" />
+        <classShapeMoniker Id="6c6b2596-3958-44b7-84ee-37247d6a0a12" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.375 : 5.98159912109375); (6.125 : 5.98159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtDirection/ExtDirection_ExtDirection_Tran" />
+      <nodes>
+        <classShapeMoniker Id="a3fc2515-6928-44aa-beea-1da4cb7b96b5" />
+        <classShapeMoniker Id="02c9607c-33c7-411e-8928-ffa741da7b38" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.375 : 6.9631982421875); (4.375 : 9.99120198567708); (6.125 : 9.99120198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtDirection/ExtDirection_ExtCourse" />
+      <nodes>
+        <classShapeMoniker Id="a3fc2515-6928-44aa-beea-1da4cb7b96b5" />
+        <classShapeMoniker Id="9fabb251-4f1a-498e-9c6f-8358cba82fa0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.125 : 10.0104484049479); (8.875 : 10.0104484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtCourse/ExtCourse_ExtCourse_Tran" />
+      <nodes>
+        <classShapeMoniker Id="9fabb251-4f1a-498e-9c6f-8358cba82fa0" />
+        <classShapeMoniker Id="02e5f856-89ee-4e90-85ad-59eb5f927a5b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.375 : 1.91429768880208); (9.125 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtSubject/ExtSubject_ExtSubject_Tran" />
+      <nodes>
+        <classShapeMoniker Id="c947467c-f4a5-4ebd-b52e-3172fb9256d1" />
+        <classShapeMoniker Id="d4c87bbb-956a-4b74-bdd9-72f1d70fcb46" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.125 : 8.84375); (11.34375 : 8.84375); (11.34375 : 5.8862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtCourse/ExtCourse_ExtCourse_Subject" />
+      <nodes>
+        <classShapeMoniker Id="9fabb251-4f1a-498e-9c6f-8358cba82fa0" />
+        <classShapeMoniker Id="17f32061-7ca1-4e87-8633-d6adf36d156d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.28125 : 2.8381982421875); (8.28125 : 4.65625); (9.75 : 4.65625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtSubject/ExtSubject_ExtCourse_Subject" />
+      <nodes>
+        <classShapeMoniker Id="c947467c-f4a5-4ebd-b52e-3172fb9256d1" />
+        <classShapeMoniker Id="17f32061-7ca1-4e87-8633-d6adf36d156d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ae25d9e6-2eb3-46b6-b412-8e856b77bf79" absoluteBounds="11.125, 2.875, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/ExtDbDataContext/ExtSubject_Lecturer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e8939198-fe90-44fd-9a1e-e8aae8698643" absoluteBounds="11.14, 3.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bdda2c12-efa5-4527-a52f-d34d7c8dacca" absoluteBounds="12.875, 8.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ExtDbDataContext/Course_MainLecturer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a8853f65-17ad-458b-9391-39cd97c0d2f0" absoluteBounds="12.89, 8.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.375 : 0.96875); (12.15625 : 0.96875); (12.15625 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtSubject/ExtSubject_Subject_Lecturer" />
+      <nodes>
+        <classShapeMoniker Id="c947467c-f4a5-4ebd-b52e-3172fb9256d1" />
+        <classShapeMoniker Id="ae25d9e6-2eb3-46b6-b412-8e856b77bf79" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.7934932281901); (8.19791666666667 : 3.7934932281901 : JumpStart); (8.36458333333333 : 3.7934932281901 : JumpEnd); (11.125 : 3.7934932281901)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtUser/ExtUser_Subject_Lecturer" />
+      <nodes>
+        <classShapeMoniker Id="8b483c2e-b686-48f7-854d-5099c33defab" />
+        <classShapeMoniker Id="ae25d9e6-2eb3-46b6-b412-8e856b77bf79" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.125 : 9.015625); (12.875 : 9.015625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtCourse/ExtCourse_Course_MainLecturer" />
+      <nodes>
+        <classShapeMoniker Id="9fabb251-4f1a-498e-9c6f-8358cba82fa0" />
+        <classShapeMoniker Id="bdda2c12-efa5-4527-a52f-d34d7c8dacca" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 4.1170068359375); (1.75 : 8.53125); (4.29166666666667 : 8.53125 : JumpStart); (4.45833333333333 : 8.53125 : JumpEnd); (11.2604166666667 : 8.53125 : JumpStart); (11.4270833333333 : 8.53125 : JumpEnd); (12.875 : 8.53125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ExtDbDataContext/ExtUser/ExtUser_Course_MainLecturer" />
+      <nodes>
+        <classShapeMoniker Id="8b483c2e-b686-48f7-854d-5099c33defab" />
+        <classShapeMoniker Id="bdda2c12-efa5-4527-a52f-d34d7c8dacca" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

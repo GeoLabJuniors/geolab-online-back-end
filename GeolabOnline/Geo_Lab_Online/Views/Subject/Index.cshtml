@@ -7,7 +7,7 @@
 
 <h2>Subject</h2>
 
-<p>
+@*<p>
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         ახალი კურსის დამატება
     </button>
@@ -32,7 +32,7 @@
         </div>
 
     </div>
-</div>
+</div>*@
 
 <table class="table">
     <tr>
@@ -45,9 +45,9 @@
         <th>
             @Html.DisplayNameFor(model => model.YoutubeLink)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Cours)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -62,9 +62,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.YoutubeLink)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Cours)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

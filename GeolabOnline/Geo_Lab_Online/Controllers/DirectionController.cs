@@ -67,9 +67,15 @@ namespace Geo_Lab_Online.Controllers
         }
         public ActionResult Delete(int id)
         {
-            db.Directions.DeleteOnSubmit((db.Directions.Where(a => a.ID == id).FirstOrDefault()));
-            db.SubmitChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Directions.DeleteOnSubmit((db.Directions.Where(a => a.ID == id).FirstOrDefault()));
+                db.SubmitChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex) {
+                ViewBag.delex = ex.ToString();
+                return RedirectToAction("Index"); }
         }
         public ActionResult Edit(int id)
         {

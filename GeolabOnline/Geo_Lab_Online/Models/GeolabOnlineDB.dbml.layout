@@ -2,22 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 19.5, 13.25" name="GeolabOnlineDB">
   <DataContextMoniker Name="/GeolabOnlineDBDataContext" />
   <nestedChildShapes>
-    <classShape Id="170049ef-4c69-4a50-9b59-8ee02eb48aa4" absoluteBounds="3.5, 6.625, 2, 1.7708968098958318">
-      <DataClassMoniker Name="/GeolabOnlineDBDataContext/Course" />
-      <nestedChildShapes>
-        <elementListCompartment Id="e6177b71-aad2-43a3-93f8-c16df062bf4f" absoluteBounds="3.515, 7.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="3b8d985d-6b1a-4d36-af2f-9d958c8e0661" absoluteBounds="9, 10.625, 2, 2.3478011067708344">
       <DataClassMoniker Name="/GeolabOnlineDBDataContext/User" />
       <nestedChildShapes>
         <elementListCompartment Id="610b10b4-dd92-4217-a5e3-03465743a942" absoluteBounds="9.015, 11.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="f73e0dc2-efda-48a7-b730-f0fc92cd3ad2" absoluteBounds="0.75, 6.625, 2, 1.7708968098958318">
-      <DataClassMoniker Name="/GeolabOnlineDBDataContext/Direction" />
-      <nestedChildShapes>
-        <elementListCompartment Id="71fbc5a2-701f-43a2-9279-33ca2a64af48" absoluteBounds="0.765, 7.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="a15b43a0-3c22-4761-945d-27598d004014" absoluteBounds="11.75, 3.75, 2, 1.5785953776041666">
@@ -42,12 +30,6 @@
       <DataClassMoniker Name="/GeolabOnlineDBDataContext/LessonsCodeType" />
       <nestedChildShapes>
         <elementListCompartment Id="094e95dd-3bf1-47b9-8edd-c5f28b64b381" absoluteBounds="6.265, 4.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="f8a10aef-9939-4726-aaa5-623a7e289c35" absoluteBounds="6.25, 6.625, 2, 1.7708968098958318">
-      <DataClassMoniker Name="/GeolabOnlineDBDataContext/Subject" />
-      <nestedChildShapes>
-        <elementListCompartment Id="40e267df-8599-498a-87d1-5586e8fffe9c" absoluteBounds="6.265, 7.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="d1ecf0c0-0499-4cd7-ba93-e2c3cf79a38e" absoluteBounds="11.75, 0.75, 2, 1.5785953776041666">
@@ -80,98 +62,70 @@
         <elementListCompartment Id="46f34bfc-fa6b-4282-89c1-2f4841dc9780" absoluteBounds="17.265, 4.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 7.51044840494792); (3.5 : 7.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Direction/Direction_Course" />
-      <nodes>
-        <classShapeMoniker Id="f73e0dc2-efda-48a7-b730-f0fc92cd3ad2" />
-        <classShapeMoniker Id="170049ef-4c69-4a50-9b59-8ee02eb48aa4" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(13.75 : 4.53929768880208); (14.5 : 4.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13.75 : 4.53929768880208); (14.5 : 4.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/LessonQuiz/LessonQuiz_LessonQuizAnswer" />
       <nodes>
         <classShapeMoniker Id="a15b43a0-3c22-4761-945d-27598d004014" />
         <classShapeMoniker Id="5e4ab8ff-f24c-4419-b919-c5e74796089a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 4.53929768880208); (11.2916666666667 : 4.53929768880208 : JumpStart); (11.4583333333333 : 4.53929768880208 : JumpEnd); (11.75 : 4.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 4.53929768880208); (11.2916666666667 : 4.53929768880208 : JumpStart); (11.4583333333333 : 4.53929768880208 : JumpEnd); (11.75 : 4.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/Lesson/Lesson_LessonQuiz" />
       <nodes>
         <classShapeMoniker Id="aa78bff8-a511-4941-8afd-82eea83c5bc3" />
         <classShapeMoniker Id="a15b43a0-3c22-4761-945d-27598d004014" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 4.56814697265625); (8.54166666666667 : 4.56814697265625 : JumpStart); (8.70833333333333 : 4.56814697265625 : JumpEnd); (9 : 4.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 4.56814697265625); (8.38541666666667 : 4.56814697265625 : JumpStart); (8.55208333333333 : 4.56814697265625 : JumpEnd); (9 : 4.56814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/LessonsCodeType/LessonsCodeType_Lesson" />
       <nodes>
         <classShapeMoniker Id="855b7e87-7f73-463d-83b1-555da8a0f522" />
         <classShapeMoniker Id="aa78bff8-a511-4941-8afd-82eea83c5bc3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 6.625); (8.625 : 6.25); (8.625 : 3.94032148632813); (9 : 3.94032148632813)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Subject/Subject_Lesson" />
-      <nodes>
-        <classShapeMoniker Id="f8a10aef-9939-4726-aaa5-623a7e289c35" />
-        <classShapeMoniker Id="aa78bff8-a511-4941-8afd-82eea83c5bc3" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 7.51044840494792); (6.25 : 7.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Course/Course_Subject" />
-      <nodes>
-        <classShapeMoniker Id="170049ef-4c69-4a50-9b59-8ee02eb48aa4" />
-        <classShapeMoniker Id="f8a10aef-9939-4726-aaa5-623a7e289c35" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(10 : 3.375); (10 : 1.53929768880208); (11.75 : 1.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10 : 3.375); (10 : 1.53929768880208); (11.75 : 1.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/Lesson/Lesson_UserCode" />
       <nodes>
         <classShapeMoniker Id="aa78bff8-a511-4941-8afd-82eea83c5bc3" />
         <classShapeMoniker Id="d1ecf0c0-0499-4cd7-ba93-e2c3cf79a38e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 10.625); (11.375 : 10.25); (11.375 : 1.96519853320312); (11.75 : 1.96519853320312)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 10.625); (11.375 : 10.25); (11.375 : 1.96519853320312); (11.75 : 1.96519853320312)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/User/User_UserCode" />
       <nodes>
         <classShapeMoniker Id="3b8d985d-6b1a-4d36-af2f-9d958c8e0661" />
         <classShapeMoniker Id="d1ecf0c0-0499-4cd7-ba93-e2c3cf79a38e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 7.56814697265625); (9 : 7.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Subject/Subject_UserCurse" />
-      <nodes>
-        <classShapeMoniker Id="f8a10aef-9939-4726-aaa5-623a7e289c35" />
-        <classShapeMoniker Id="c8c0f8ec-e329-47dd-b3b8-0d9032954222" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.9687475 : 10.625); (9.9687475 : 8.2612939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.9687475 : 10.625); (9.9687475 : 8.2612939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/User/User_UserCurse" />
       <nodes>
         <classShapeMoniker Id="3b8d985d-6b1a-4d36-af2f-9d958c8e0661" />
         <classShapeMoniker Id="c8c0f8ec-e329-47dd-b3b8-0d9032954222" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 5.66126164523237); (11.3160744349011 : 5.97733608013349 : JumpStart); (11.4339255650989 : 6.09518721033125 : JumpEnd); (11.5625 : 6.22376164523237); (11.5625 : 7.53929768880208); (11.75 : 7.53929768880208)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 5.66126164523237); (11.3160744349011 : 5.97733608013349 : JumpStart); (11.4339255650989 : 6.09518721033125 : JumpEnd); (11.5625 : 6.22376164523237); (11.5625 : 7.53929768880208); (11.75 : 7.53929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/Lesson/Lesson_UserLesson" />
       <nodes>
         <classShapeMoniker Id="aa78bff8-a511-4941-8afd-82eea83c5bc3" />
         <classShapeMoniker Id="05ab1f88-2099-44cf-8c1e-dedfb537f359" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 11.8301530533854); (12.75 : 11.8301530533854); (12.75 : 8.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 11.8301530533854); (12.75 : 11.8301530533854); (12.75 : 8.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/User/User_UserLesson" />
       <nodes>
         <classShapeMoniker Id="3b8d985d-6b1a-4d36-af2f-9d958c8e0661" />
         <classShapeMoniker Id="05ab1f88-2099-44cf-8c1e-dedfb537f359" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 3.53125); (11.2916666666667 : 3.53125 : JumpStart); (11.4583333333333 : 3.53125 : JumpEnd); (16.65625 : 3.53125); (16.65625 : 2.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 3.53125); (11.2916666666667 : 3.53125 : JumpStart); (11.4583333333333 : 3.53125 : JumpEnd); (16.65625 : 3.53125); (16.65625 : 2.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/Lesson/Lesson_UserNote" />
       <nodes>
         <classShapeMoniker Id="aa78bff8-a511-4941-8afd-82eea83c5bc3" />
         <classShapeMoniker Id="4fa326fc-9cca-4bf9-83a0-fcfd9d9c2c3d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 11.2275765266927); (12.6666666666667 : 11.2275765266927 : JumpStart); (12.8333333333333 : 11.2275765266927 : JumpEnd); (16.6249975 : 11.2275765266927); (16.6249975 : 2.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 11.2275765266927); (12.6666666666667 : 11.2275765266927 : JumpStart); (12.8333333333333 : 11.2275765266927 : JumpEnd); (16.6249975 : 11.2275765266927); (16.6249975 : 2.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/User/User_UserNote" />
       <nodes>
         <classShapeMoniker Id="3b8d985d-6b1a-4d36-af2f-9d958c8e0661" />
@@ -185,18 +139,90 @@
         <classShapeMoniker Id="5661316b-e106-4d9f-83cf-d1272235934d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(16.5 : 4.50804518880208); (16.5416641666667 : 4.50804518880208 : JumpStart); (16.7083308333333 : 4.50804518880208 : JumpEnd); (17.25 : 4.50804518880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(16.5 : 4.50804518880208); (16.5416641666667 : 4.50804518880208 : JumpStart); (16.7083308333333 : 4.50804518880208 : JumpEnd); (17.25 : 4.50804518880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/LessonQuizAnswer/LessonQuizAnswer_UserQuiz" />
       <nodes>
         <classShapeMoniker Id="5e4ab8ff-f24c-4419-b919-c5e74796089a" />
         <classShapeMoniker Id="5661316b-e106-4d9f-83cf-d1272235934d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 12.4327295800781); (18.2812525 : 12.4327295800781); (18.2812525 : 5.32859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 12.4327295800781); (18.2812525 : 12.4327295800781); (18.2812525 : 5.32859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/GeolabOnlineDBDataContext/User/User_UserQuiz" />
       <nodes>
         <classShapeMoniker Id="3b8d985d-6b1a-4d36-af2f-9d958c8e0661" />
         <classShapeMoniker Id="5661316b-e106-4d9f-83cf-d1272235934d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="1f65e9e3-1d38-477b-8ad4-8a97675ba76e" absoluteBounds="0.75, 3.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/GeolabOnlineDBDataContext/Direction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ff887ab8-d45c-417c-ad9c-5ac446d227c3" absoluteBounds="0.76500000000000012, 3.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e83502e3-91c1-4830-bcb9-afe4a1702670" absoluteBounds="3.5, 7.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/GeolabOnlineDBDataContext/CourseSubject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7bd7efe2-7836-4adc-b74d-6779a0a2a5a9" absoluteBounds="3.5149999999999997, 7.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9a0ee311-e586-4f34-b9be-ca55a0a9c0b3" absoluteBounds="6.625, 7.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/GeolabOnlineDBDataContext/Subject" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1914599-bb3f-4d18-bdf5-6b7803247cb4" absoluteBounds="6.64, 8.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.46875 : 7.625); (8.46875 : 3.59375); (9 : 3.59375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Subject/Subject_Lesson" />
+      <nodes>
+        <classShapeMoniker Id="9a0ee311-e586-4f34-b9be-ca55a0a9c0b3" />
+        <classShapeMoniker Id="aa78bff8-a511-4941-8afd-82eea83c5bc3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.625 : 7.94314697265625); (9 : 7.94314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Subject/Subject_UserCurse" />
+      <nodes>
+        <classShapeMoniker Id="9a0ee311-e586-4f34-b9be-ca55a0a9c0b3" />
+        <classShapeMoniker Id="c8c0f8ec-e329-47dd-b3b8-0d9032954222" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.625 : 8.19314697265625); (5.5 : 8.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Subject/Subject_CourseSubject" />
+      <nodes>
+        <classShapeMoniker Id="9a0ee311-e586-4f34-b9be-ca55a0a9c0b3" />
+        <classShapeMoniker Id="e83502e3-91c1-4830-bcb9-afe4a1702670" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="672212ec-d22b-4d23-9781-b1a6f17a7be0" absoluteBounds="1.125, 6.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/GeolabOnlineDBDataContext/Course" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da6535b0-6c48-4c51-94df-662e74a3a755" absoluteBounds="1.1400000000000001, 7.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.125 : 8.01044840494792); (3.5 : 8.01044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Course/Course_CourseSubject" />
+      <nodes>
+        <classShapeMoniker Id="672212ec-d22b-4d23-9781-b1a6f17a7be0" />
+        <classShapeMoniker Id="e83502e3-91c1-4830-bcb9-afe4a1702670" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.9375 : 5.02089680989583); (1.9375 : 6.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Direction/Direction_Course" />
+      <nodes>
+        <classShapeMoniker Id="1f65e9e3-1d38-477b-8ad4-8a97675ba76e" />
+        <classShapeMoniker Id="672212ec-d22b-4d23-9781-b1a6f17a7be0" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5a787c05-52b8-41c2-8a2a-fc8ab61586cb" absoluteBounds="4.75, 3.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/GeolabOnlineDBDataContext/Lecture" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fcf03865-1732-41cb-9f8d-fa988f3c87ad" absoluteBounds="4.765, 4.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.3593725 : 7.625); (8.3593725 : 5.55214680989583); (6.75 : 5.55214680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/GeolabOnlineDBDataContext/Subject/Subject_Lecture" />
+      <nodes>
+        <classShapeMoniker Id="9a0ee311-e586-4f34-b9be-ca55a0a9c0b3" />
+        <classShapeMoniker Id="5a787c05-52b8-41c2-8a2a-fc8ab61586cb" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Geolab" Class="ExtDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=5.175.2.145;Initial Catalog=Geolab;Persist Security Info=True;User ID=geolabBase" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GeolabConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="ExtUsers">
+    <Type Name="ExtUser">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserSurname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserBio" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UserPhoto" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="UserEmail" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="UserPassword" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserMobileNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserPN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UserAddress" Type="System.String" DbType="NVarChar(70)" CanBeNull="true" />
+      <Column Name="UserBirthDay" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="ExtUser_ExtUser_Category" Member="ExtUser_Categories" ThisKey="UserID" OtherKey="UserID" Type="ExtUser_Category" />
+      <Association Name="ExtUser_Subject_Lecturer" Member="ExtSubject_Lecturers" ThisKey="UserID" OtherKey="LecturerID" Type="ExtSubject_Lecturer" />
+      <Association Name="ExtUser_Course_MainLecturer" Member="Course_MainLecturers" ThisKey="UserID" OtherKey="LecturerID" Type="Course_MainLecturer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Category" Member="ExtUser_Categories">
+    <Type Name="ExtUser_Category">
+      <Column Name="User_CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserCategoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Direction" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ExtUser_ExtUser_Category" Member="ExtUser" ThisKey="UserID" OtherKey="UserID" Type="ExtUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Directions" Member="ExtDirections">
+    <Type Name="ExtDirection">
+      <Column Name="DirectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DirectionName" Type="System.String" DbType="NVarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="DirectionDescription" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DirectionMiniDesc" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="DirMiniDescAuthor" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="DirectionPhoto" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="ExtDirection_ExtDirection_Tran" Member="ExtDirection_Trans" ThisKey="DirectionID" OtherKey="DirectionID" Type="ExtDirection_Tran" />
+      <Association Name="ExtDirection_ExtCourse" Member="ExtCourses" ThisKey="DirectionID" OtherKey="CourseDirectionID" Type="ExtCourse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Direction_Trans" Member="ExtDirection_Trans">
+    <Type Name="ExtDirection_Tran">
+      <Column Name="DirectionTransID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DirectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LanguageCode" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="DirectionName" Type="System.String" DbType="NVarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="DirectionDescription" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DirectionMiniDesc" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="DirMiniDescAuthor" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Association Name="ExtDirection_ExtDirection_Tran" Member="ExtDirection" ThisKey="DirectionID" OtherKey="DirectionID" Type="ExtDirection" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Courses" Member="ExtCourses">
+    <Type Name="ExtCourse">
+      <Column Name="CourseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CourseName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="CourseDescription" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CoursePhoto" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="CourseDirectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourseTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourseDurationMonths" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CoursePriceGEL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CourseMeetingsQuantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ExtCourse_ExtCourse_Tran" Member="ExtCourse_Trans" ThisKey="CourseID" OtherKey="CourseID" Type="ExtCourse_Tran" />
+      <Association Name="ExtCourse_ExtCourse_Subject" Member="ExtCourse_Subjects" ThisKey="CourseID" OtherKey="CourseID" Type="ExtCourse_Subject" />
+      <Association Name="ExtCourse_Course_MainLecturer" Member="Course_MainLecturers" ThisKey="CourseID" OtherKey="CourseID" Type="Course_MainLecturer" />
+      <Association Name="ExtDirection_ExtCourse" Member="ExtDirection" ThisKey="CourseDirectionID" OtherKey="DirectionID" Type="ExtDirection" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Course_Trans" Member="ExtCourse_Trans">
+    <Type Name="ExtCourse_Tran">
+      <Column Name="CourseTransID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CourseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LanguageCode" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="CourseName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="CourseDescription" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="ExtCourse_ExtCourse_Tran" Member="ExtCourse" ThisKey="CourseID" OtherKey="CourseID" Type="ExtCourse" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subject_Trans" Member="ExtSubject_Trans">
+    <Type Name="ExtSubject_Tran">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LanguageCode" Type="System.String" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="ExtSubject_ExtSubject_Tran" Member="ExtSubject" ThisKey="SubjectID" OtherKey="SubjectID" Type="ExtSubject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subjects" Member="ExtSubjects">
+    <Type Name="ExtSubject">
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubjectName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectDescription" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SubjectPhoto" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="SubjectSyllabus" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="SubjectPlaylist" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="ExtSubject_ExtSubject_Tran" Member="ExtSubject_Trans" ThisKey="SubjectID" OtherKey="SubjectID" Type="ExtSubject_Tran" />
+      <Association Name="ExtSubject_ExtCourse_Subject" Member="ExtCourse_Subjects" ThisKey="SubjectID" OtherKey="SubjectID" Type="ExtCourse_Subject" />
+      <Association Name="ExtSubject_Subject_Lecturer" Member="ExtSubject_Lecturers" ThisKey="SubjectID" OtherKey="SubjectID" Type="ExtSubject_Lecturer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Course_Subject" Member="ExtCourse_Subjects">
+    <Type Name="ExtCourse_Subject">
+      <Column Name="Course_SubjectID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CourseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ExtCourse_ExtCourse_Subject" Member="ExtCourse" ThisKey="CourseID" OtherKey="CourseID" Type="ExtCourse" IsForeignKey="true" />
+      <Association Name="ExtSubject_ExtCourse_Subject" Member="ExtSubject" ThisKey="SubjectID" OtherKey="SubjectID" Type="ExtSubject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subject_Lecturer" Member="ExtSubject_Lecturers">
+    <Type Name="ExtSubject_Lecturer">
+      <Column Name="Subject_LecturerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LecturerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ExtSubject_Subject_Lecturer" Member="ExtSubject" ThisKey="SubjectID" OtherKey="SubjectID" Type="ExtSubject" IsForeignKey="true" />
+      <Association Name="ExtUser_Subject_Lecturer" Member="ExtUser" ThisKey="LecturerID" OtherKey="UserID" Type="ExtUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Course_MainLecturer" Member="Course_MainLecturers">
+    <Type Name="Course_MainLecturer">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CourseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LecturerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ExtCourse_Course_MainLecturer" Member="ExtCourse" ThisKey="CourseID" OtherKey="CourseID" Type="ExtCourse" IsForeignKey="true" />
+      <Association Name="ExtUser_Course_MainLecturer" Member="ExtUser" ThisKey="LecturerID" OtherKey="UserID" Type="ExtUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

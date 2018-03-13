@@ -25,7 +25,7 @@ namespace Geo_Lab_Online.Controllers
                     Id = i.ID,
                     Title = i.SubjectTitle,
                     YoutubeLink = i.SubjectVideoLink,
-                     Cours = db.Courses.Where(a => a.ID == i.CourseID).Select(a => a.CourseTitle).FirstOrDefault().ToString()
+                  //   Cours = db.Courses.Where(a => a.ID == i.CourseID).Select(a => a.CourseTitle).FirstOrDefault().ToString()
                 });
             }
             var s = db.Courses.ToList();
@@ -43,8 +43,9 @@ namespace Geo_Lab_Online.Controllers
                     SubjectDesc = subjectModel.Desc,
                     SubjectTitle = subjectModel.Title,
                     SubjectVideoLink = subjectModel.YoutubeLink,
-                    CourseID = Int32.Parse(subjectModel.Cours)
+                  //  CourseID = Int32.Parse(subjectModel.Cours)
                 };
+           
                 db.Subjects.InsertOnSubmit(subject);
                 db.SubmitChanges();
             }
@@ -73,7 +74,7 @@ namespace Geo_Lab_Online.Controllers
                 Id = course.ID,
                 Title = course.SubjectTitle,
                 YoutubeLink = course.SubjectVideoLink,
-                 Cours = course.Course.CourseTitle
+                // Cours = course.Course.CourseTitle
             };
             var s = db.Courses.ToList();
             ViewBag.list = new SelectList(s, "ID", "CourseTitle");
@@ -87,7 +88,7 @@ namespace Geo_Lab_Online.Controllers
             course.SubjectDesc = model.Desc;
             course.SubjectTitle = model.Title;
             course.SubjectVideoLink = model.YoutubeLink;
-            course.CourseID = Int32.Parse(model.Cours);
+            //course.CourseID = Int32.Parse(model.Cours);
             db.SubmitChanges();
             return RedirectToAction("Index");
         }
