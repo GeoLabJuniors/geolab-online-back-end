@@ -1,43 +1,223 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-    Layout = null;
-}
+﻿  @model Geo_Lab_Online.Models.HomeIndexModel
 
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Content/MyJavaScript.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
-</head>
-<body>
-
-    <div class="container body-content">
-
-        <input type="text" id="userPasswordcon" class="form-control input-sm chat-input" placeholder="username" />
-        <br>
-        <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password" />
-        <br>
-        <div class="wrapper">
-            <span class="group-btn">
-                <a href="#" class="btn btn-primary btn-md logintest">login <i class="fa fa-sign-in"></i></a>
-                @Html.ActionLink("Login with facebook", "Facebook", "User")
-            </span>
+<section>
+    <div class="container-flui no_padding">
+        <div class="video_wrapper">
+            @*<img src="~/Content/MainCon/images/cover.png">*@
         </div>
-
-
-        <hr />
-
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
- 
-</body>
-</html>
+    <div class="mimartulebebi" id="mimartulebebi">
+        <div class="container">
+            <span class="block_title font-BPGNinoMtavruli"><a href="directions.html"> მიმართულებები </a></span>
+
+            <div class="block_body">
+                @foreach (var s in Model.CourseList )
+                {   <div class="col-md-4">
+                    <div class="category_box">
+                        <img src="~/Content/Image/@s.DirectionImage@s.DirectionImageExt">
+                        <div class="box_desc">
+                            <div class="desc_header font-BPGNinoMtavruli">
+                               @s.DirectionTitle
+                            </div>
+                            <div class="desc_intro font-DejaVuSans">
+                               @s.DirectionDescMini
+                            </div>
+                            <button  class="more font-BPGNinoMtavruli" >
+                                <a href="~/Home/Direction/@s.ID"> ვრცლად</a>
+                            </button>
+                        </div>
+                    </div>
+                </div> }
+                   
+                  
+                </div>
+            </div>
+
+        </div>
+    
+
+    <div class="leqciebi" id="leqciebi">
+        <div class="container">
+            <span class="block_title font-BPGNinoMtavruli"> ლექციები </span>
+
+            <div class="block_body font-BPGNinoMtavruli">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="lesson_box">
+                            <div class="lesson_box_in"> </div>
+                            <div class="lesson_desc">
+                                <div class="lesson_title">
+                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                </div>
+                                <div class="lesson_intro">
+                                    ვებ პროგრამირება Front-End (HTML)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="lesson_box">
+                            <div class="lesson_box_in"> </div>
+                            <div class="lesson_desc">
+                                <div class="lesson_title">
+                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                </div>
+                                <div class="lesson_intro">
+                                    ვებ პროგრამირება Front-End (HTML)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="lesson_box">
+                            <div class="lesson_box_in"> </div>
+                            <div class="lesson_desc">
+                                <div class="lesson_title">
+                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                </div>
+                                <div class="lesson_intro">
+                                    ვებ პროგრამირება Front-End (HTML)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="lesson_box">
+                            <div class="lesson_box_in"> </div>
+                            <div class="lesson_desc">
+                                <div class="lesson_title">
+                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                </div>
+                                <div class="lesson_intro">
+                                    ვებ პროგრამირება Front-End (HTML)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="lesson_box">
+                            <div class="lesson_box_in"> </div>
+                            <div class="lesson_desc">
+                                <div class="lesson_title">
+                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                </div>
+                                <div class="lesson_intro">
+                                    ვებ პროგრამირება Front-End (HTML)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="lesson_box">
+                            <div class="lesson_box_in"> </div>
+                            <div class="lesson_desc">
+                                <div class="lesson_title">
+                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                </div>
+                                <div class="lesson_intro">
+                                    ვებ პროგრამირება Front-End (HTML)
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="teachers" id="teachers">
+        <div class="container">
+            <div class="block_title font-BPGNinoMtavruli"> ლექტორები</div>
+        </div>
+        <div class="teachers_block_bg">
+            <div class="container">
+                <div class="teachers_box_wrapper clearfix">
+                    @foreach(var item in Model.LectureList) {
+                    <div class="col-md-3">
+                        <div class="teachers_box font-BPGNinoMtavruli">
+                            <a href="#teachers"><img src="http://geolab.edu.ge/@item.UserPhoto"  style="width: 163px;height: 164px;"></a>
+                            <div class="teachers_desc">
+                                <div class="teachers_title">
+                                    <a href="#"> @item.FirstName  @item.LastName</a>
+                                </div>
+                                <div class="teachers_intro">
+                                   @item.UserSubjectName
+                                </div>
+                            </div>
+                        </div>
+                    </div> }
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about" id="about">
+        <div class="container">
+            <div class="block_title font-BPGNinoMtavruli"> პროექტის შესახებ </div>
+            <div class="about_intro font-DejaVuSans">
+                ჯეოლაბი - მობილური და ვებ აპლიკაციების ლაბორატორიაა. ეს არის სივრცე, რომელიც 24 საათის განმავლობაში ღიაა
+                სხვადასხვა საინტერესო და ინოვაციური პროექტის განხორციელებისათვის. ჯეოლაბის განუყოფელი ნაწილია სასწავლო
+                ცენტრი, რომელშიც ნებისმიერ მსურველს აქვს საშუალება, ისწავლოს მისთვის საინტერესო მიმართულებით:
+            </div>
+        </div>
+    </div>
+
+    <div class="contact" id="contact">
+        <div class="container">
+            <div class="block_title font-BPGNinoMtavruli"> კონტაქტი</div>
+
+            <form method="POST" class="clearfix font-DejaVuSans">
+                <div class="checks font-BPGNinoMtavruli">
+                    <label>
+                        <input type="checkbox"> დიზაინი
+                        <span class="checkmark"></span>
+                    </label> <br>
+                    <label>
+                        <input type="checkbox"> ვებ პროგრამირება
+                        <span class="checkmark"></span>
+                    </label> <br>
+                    <label>
+                        <input type="checkbox" name="Car" value="Mercedes-Benz"> მობილური პროგრამირება
+                        <span class="checkmark"></span>
+                    </label> <br>
+                    <label>
+                        <input type="checkbox" name="Car" value="Mercedes-Benz"> თამაშების დეველოპმენტი
+                        <span class="checkmark"></span>
+                    </label> <br>
+                    <label>
+                        <input type="checkbox" name="Car" value="Mercedes-Benz"> კოდირება
+                        <span class="checkmark"></span>
+                    </label> <br>
+                    <label>
+                        <input type="checkbox" name="Car" value="Mercedes-Benz"> კომუნიკაცია
+                        <span class="checkmark"></span>
+                    </label> <br>
+                </div>
+
+                <input id="Emial" type="email" name="email" placeholder="ელფოსტა:" required="">
+
+                <input id="Name" type="text" placeholder="სახელი:" name="firstname" value="" required="">
+
+                <textarea id="TExt" name="message" placeholder="ტექსტი:" rows="10" cols="50"></textarea>
+
+                <input type="submit" class="sendMail" value="გაგზავნა">
+
+                <input type="reset" value="განულება">
+            </form>
+
+        </div>
+    </div>
+</section>
+
+    

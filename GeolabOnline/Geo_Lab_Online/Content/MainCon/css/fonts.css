@@ -1,0 +1,37 @@
+
+@font-face {
+  font-family: 'BPGDejaVuSans';
+  src: url('../fonts/BPGDejaVuSans.eot?#iefix') format('embedded-opentype'), 
+   url('../fonts/BPGDejaVuSans.woff') format('woff'), 
+   url('../fonts/BPGDejaVuSans.ttf')  format('truetype'),
+   url('../fonts/BPGDejaVuSans.svg#BPGDejaVuSans') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DejaVuSans';
+  src: url('../fonts/DejaVuSans.eot?#iefix') format('embedded-opentype'), 
+   url('../fonts/DejaVuSans.woff') format('woff'), 
+   url('../fonts/DejaVuSans.ttf')  format('truetype'),
+    url('../fonts/DejaVuSans.svg#DejaVuSans') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'BPGNinoMtavruli-Bold';
+  src: url('../fonts/BPGNinoMtavruli-Bold.eot?#iefix') format('embedded-opentype'), 
+   url('../fonts/BPGNinoMtavruli-Bold.woff') format('woff'), 
+   url('../fonts/BPGNinoMtavruli-Bold.ttf')  format('truetype'),
+   url('../fonts/BPGNinoMtavruli-Bold.svg#BPGNinoMtavruli-Bold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'BPGNinoMtavruli';
+  src: url('../fonts/BPGNinoMtavruli.eot?#iefix') format('embedded-opentype'), 
+   url('../fonts/BPGNinoMtavruli.woff') format('woff'),
+   url('../fonts/BPGNinoMtavruli.ttf')  format('truetype'),
+   url('../fonts/BPGNinoMtavruli.svg#BPGNinoMtavruli') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

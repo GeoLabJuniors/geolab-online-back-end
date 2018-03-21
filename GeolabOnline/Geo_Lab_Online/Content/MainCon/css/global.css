@@ -1,0 +1,25 @@
+.font-BPGDejaVuSans {
+	font-family: 'BPGDejaVuSans';
+}
+.font-DejaVuSans {
+	font-family: 'DejaVuSans';
+}
+.font-BPGNinoMtavruli-Bold {
+	font-family: 'BPGNinoMtavruli-Bold';
+}
+.font-BPGNinoMtavruli {
+	font-family: 'BPGNinoMtavruli';
+}
+
+.left {
+	float: left;
+}
+.right {
+	float: right;
+} 
+.no_padding {
+	padding: 0px;
+}
+.active {
+	color: #478ECC !important;
+}

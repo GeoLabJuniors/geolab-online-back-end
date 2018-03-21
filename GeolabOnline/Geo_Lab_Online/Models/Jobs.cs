@@ -24,7 +24,7 @@ namespace Geo_Lab_Online.Models
                     new Direction
                     {
                         ID = s.DirectionID,
-                        DirectionTitle = s.DirectionName,
+                        DirectionTitle = s.DirectionName,  DirectionDescMini=s.DirectionMiniDesc,
                         DirectionDesc = s.DirectionDescription
                     });
             }
@@ -43,6 +43,7 @@ namespace Geo_Lab_Online.Models
                         if (t.ID == ext.DirectionID)
                         {
                             t.DirectionTitle = ext.DirectionName;
+                            t.DirectionDescMini = ext.DirectionMiniDesc;
                             t.DirectionDesc = ext.DirectionDescription;
                             geolabOnline.SubmitChanges();
 
@@ -171,7 +172,7 @@ namespace Geo_Lab_Online.Models
         #endregion
         #region LectureMig
         public void LectureMig()
-        {
+         {
             var ExtLecture = extdb.ExtUsers
                 .Where(a => a.ExtUser_Categories.Any(b => b.UserCategoryID == 1 || b.UserCategoryID == 5))
                 .Select(q =>
@@ -182,7 +183,8 @@ namespace Geo_Lab_Online.Models
                     q.UserName,
                     q.UserSurname,
                     q.UserEmail,
-                    UserSubject = q.ExtSubject_Lecturers.Where(a => a.LecturerID == q.UserID).Select(w => w.SubjectID).FirstOrDefault()
+                    UserSubject = q.ExtSubject_Lecturers.Where(a => a.LecturerID == q.UserID).Select(w => w.SubjectID).FirstOrDefault(),
+                      UserSubjectName = q.ExtSubject_Lecturers.Where(a => a.LecturerID == q.UserID).Select(w => w.ExtSubject.SubjectName).FirstOrDefault()
                 })
                 .ToList();
 
@@ -199,7 +201,7 @@ namespace Geo_Lab_Online.Models
                     new Lecture
                     {
                         ID = s.UserID,
-                        FirstName=s.UserName, LastName=s.UserSurname,UserBio=s.UserBio, UserPhoto=s.UserPhoto, UserMail=s.UserEmail, UserSubject=s.UserSubject
+                        FirstName=s.UserName, LastName=s.UserSurname,UserBio=s.UserBio, UserPhoto=s.UserPhoto, UserMail=s.UserEmail, UserSubject=s.UserSubject, UserSubjectName=s.UserSubjectName
 
                     });
             }
