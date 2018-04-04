@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Geo_Lab_Online.Models.Subject>
+    @{
+        ViewBag.Title = "Subject";
+        Layout = "~/Views/Shared/Main_Layout.cshtml";
+    }
+
+    <!-- Lectures Start -->
+    <div class="lectures_filter">
+        <div class="container">
+
+
+        </div>
+    </div>
+
+
+
+    <div class="direction_leqciebi" id="direction_leqciebi">
+        <div class="container">
+
+            <div class="block_body font-BPGNinoMtavruli">
+                <div class="row">
+                    @foreach (var s in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="lesson_box">
+                                <div class="lesson_box_in"> </div>
+                                <div class="lesson_desc">
+                                    <div class="lesson_title">
+                                        <a href="">@s.SubjectTitle </a>
+                                    </div>
+                                    <div class="lesson_intro">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Lectures End -->

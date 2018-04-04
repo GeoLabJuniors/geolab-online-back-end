@@ -13,7 +13,8 @@ namespace Geo_Lab_Online.Controllers
         public ActionResult Index()
         {
             HomeIndexModel homeIndexModel = new HomeIndexModel();
-            homeIndexModel.CourseList = db.Directions.ToList();           
+            homeIndexModel.CourseList = db.Directions.ToList();
+            homeIndexModel.SubjectList = db.Subjects.Take(6).ToList();
             homeIndexModel.LectureList = db.Lectures.Take(4).OrderBy(x => Guid.NewGuid()).ToList();
             return View(homeIndexModel);
         }
@@ -65,5 +66,7 @@ namespace Geo_Lab_Online.Controllers
             //DirectionModel ss = new DirectionModel() { Courses = list };
             return View(directionModel);
         }
+
+        public ActionResult Subject() { return View(db.Subjects.ToList()); }
     }
 }

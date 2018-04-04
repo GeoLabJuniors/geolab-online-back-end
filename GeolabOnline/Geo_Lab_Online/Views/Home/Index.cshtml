@@ -44,93 +44,25 @@
 
             <div class="block_body font-BPGNinoMtavruli">
                 <div class="row">
+                    @foreach(var q in Model.SubjectList) {
                     <div class="col-md-4">
                         <div class="lesson_box">
                             <div class="lesson_box_in"> </div>
                             <div class="lesson_desc">
                                 <div class="lesson_title">
-                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                    <a href="">@q.SubjectTitle</a>
                                 </div>
                                 <div class="lesson_intro">
-                                    ვებ პროგრამირება Front-End (HTML)
+                                   @*@q.SubjectDesc*@
                                 </div>
                             </div>
 
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="lesson_box">
-                            <div class="lesson_box_in"> </div>
-                            <div class="lesson_desc">
-                                <div class="lesson_title">
-                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                                </div>
-                                <div class="lesson_intro">
-                                    ვებ პროგრამირება Front-End (HTML)
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="lesson_box">
-                            <div class="lesson_box_in"> </div>
-                            <div class="lesson_desc">
-                                <div class="lesson_title">
-                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                                </div>
-                                <div class="lesson_intro">
-                                    ვებ პროგრამირება Front-End (HTML)
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    }
+                    
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="lesson_box">
-                            <div class="lesson_box_in"> </div>
-                            <div class="lesson_desc">
-                                <div class="lesson_title">
-                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                                </div>
-                                <div class="lesson_intro">
-                                    ვებ პროგრამირება Front-End (HTML)
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="lesson_box">
-                            <div class="lesson_box_in"> </div>
-                            <div class="lesson_desc">
-                                <div class="lesson_title">
-                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                                </div>
-                                <div class="lesson_intro">
-                                    ვებ პროგრამირება Front-End (HTML)
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="lesson_box">
-                            <div class="lesson_box_in"> </div>
-                            <div class="lesson_desc">
-                                <div class="lesson_title">
-                                    <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                                </div>
-                                <div class="lesson_intro">
-                                    ვებ პროგრამირება Front-End (HTML)
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+              
             </div>
         </div>
     </div>

@@ -421,6 +421,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Views\Home\Direction.cshtml" />
+    <Content Include="Views\Home\Subject.cshtml" />
     <None Include="Views\Shared\Main_Layout.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
