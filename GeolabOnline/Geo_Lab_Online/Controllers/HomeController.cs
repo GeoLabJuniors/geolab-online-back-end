@@ -59,10 +59,13 @@ namespace Geo_Lab_Online.Controllers
             directionModel.DirectionImageExt = s.DirectionImageExt;
             directionModel.DirectionImage = s.DirectionImage;
             directionModel.ID = s.ID;
-            directionModel.Courses = new List<CoursModel>();
-            var list = db.Courses.Where(a => a.Direction.ID==directionModel.ID).ToList();
-            foreach (var kk in list) {
-                directionModel.Courses.Add(new CoursModel { Id=kk.ID, Desc=kk.CourseDesc,Title=kk.CourseTitle });  }
+            directionModel.Courses = s.Courses.ToList();
+            directionModel.subject = db.CourseSubjects.Where(a =>s.Courses.Select(v=>v.ID).ToList().Contains(a.CourseID.Value) ).Select(r=>r.Subject).ToList();
+           
+            //var list1 =
+            //var list = db.Courses.Where(a => a.Direction.ID==directionModel.ID).ToList();
+            //foreach (var kk in list) {
+            //    directionModel.Courses.Add(new CoursModel { Id=kk.ID, Desc=kk.CourseDesc,Title=kk.CourseTitle });  }
             //DirectionModel ss = new DirectionModel() { Courses = list };
             return View(directionModel);
         }

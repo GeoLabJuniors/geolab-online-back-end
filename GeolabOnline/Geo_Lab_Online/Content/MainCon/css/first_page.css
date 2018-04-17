@@ -5,6 +5,31 @@ a:hover, a:focus, a:active {
 	text-decoration: none;
 }
 
+/*------Login-------*/
+.logout {
+	text-transform: uppercase;
+	font-size: 16px;
+	float: right;
+	margin-top: 8px;
+}
+.logout_btn, .box_desc .more, .registration_box form input[type=submit], .registration_box form input[type=reset] {
+	color: #715774;
+	background-color: #DCE1ED;
+	border-radius: 7px;
+	border: none;
+	padding: 6px 10px 2px;
+	transition: 0.3s ease;
+	font-family: 'BPGNinoMtavruli-Bold';
+}
+.logout_btn:hover, .box_desc .more:hover, 
+.registration_box form input[type=submit]:hover, .registration_box form input[type=reset]:hover {
+	background-color: #715774;
+	color: #DCE1ED;
+	transition: 0.3s ease;
+}
+.logout_btn:active {
+	margin-top: 3px;
+}
 /* -------MENU-------*/
 .mainmenu {
 	margin-top: 14px;

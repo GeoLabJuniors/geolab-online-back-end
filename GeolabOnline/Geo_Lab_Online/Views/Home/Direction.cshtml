@@ -1,8 +1,5 @@
 ﻿@model Geo_Lab_Online.Models.DirectionModel
-@{
-    ViewBag.Title = "Direction";
-    Layout = "~/Views/Shared/Main_Layout.cshtml";
-}
+
 
 <!-- Directions Page Start-->
 <div class="direction_cover design_cover">
@@ -26,10 +23,10 @@
 <div class="directions_menu">
     <div class="container">
         <ul class="font-BPGNinoMtavruli">
-            <li><a href="#"> პოლიგრაფიული </a></li>
-            <li><a href="#"> ინტერფეისი </a></li>
-            <li><a href="#"> ვიდეო მონტაჟი </a></li>
-            <li><a href="#">  ფონტის ინჟინერია</a></li>
+            @foreach (var s in Model.Courses)
+            {
+            <li><a href="#">  @s.CourseTitle</a></li> }
+           
         </ul>
     </div>
 </div>
@@ -37,182 +34,24 @@
     <div class="container">
 
         <div class="block_body font-BPGNinoMtavruli">
-            <div class="row">
+       @foreach(var w in Model.subject) { 
                 <div class="col-md-4">
                     <div class="lesson_box">
                         <div class="lesson_box_in"> </div>
                         <div class="lesson_desc">
                             <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
+                                <a href=""> @w.SubjectTitle</a>
                             </div>
                             <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
+                               
                             </div>
                         </div>
 
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lesson_box">
-                        <div class="lesson_box_in"> </div>
-                        <div class="lesson_desc">
-                            <div class="lesson_title">
-                                <a href=""> ვებ პროგრამირება Front-End (HTML) </a>
-                            </div>
-                            <div class="lesson_intro">
-                                ვებ პროგრამირება Front-End (HTML)
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+                </div>}
+              
+            
+          
         </div>
     </div>
 </div>

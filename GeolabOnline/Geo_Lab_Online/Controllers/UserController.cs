@@ -16,38 +16,55 @@ namespace Geo_Lab_Online.Controllers
         [HttpPost]
         public JsonResult Login(LoginModel model)
         {
+            try { 
             User loginUser = db.Users
                 .Where(s => s.UserName == model.Name && s.Password == Hash(model.Password))
                 .FirstOrDefault();
             if (loginUser.Status == "A")
             {
                 Session["login_user"] = loginUser;
+                    if (loginUser.UserName.ToString() == "admin") {
+                        return Json(new
+                        {
+                            redirectUrl = Url.Action("Index", "Direction"),
+                            isRedirect = true
+                        });  }
                 return Json(1);
             }
             else
             {
                 return Json(0);
             }
+            }
+            catch (Exception) { return Json(0); }
         }
         #endregion
-
+        public JsonResult Logout()
+        {
+            Session["login_user"] = null;
+            return  Json(new
+            {
+                redirectUrl = Url.Action("Index", "Home"),
+                isRedirect = true
+            });
+        }
         #region register
         [HttpPost]
         public JsonResult Register(RegisterModel model)
         {
             if (
-                model.FirstName.Trim() == "" ||
-                model.LastName.Trim() == "" ||
-                model.UserName.Trim() == "" ||
-                model.PassowrdCon.Trim() == "" ||
-                model.Password.Trim() == "" ||
-                model.Mail.Trim() == "")
+                model.FirstName == null ||
+                model.LastName == null ||
+                model.UserName == null ||
+                model.PassowrdCon == null ||
+                model.PassowrdCon1 == null ||
+                model.Mail == null)
             {
                 return Json(-1);
             }
-            else
+            else if (db.Users.Where(a=>a.Email==model.Mail).FirstOrDefault()!=null) { return Json(2); } else
             {
-                var passwordHash = Hash(model.Password);
+                var passwordHash = Hash(model.PassowrdCon1);
                 try
                 {
                     User newUser = new User
@@ -71,7 +88,7 @@ namespace Geo_Lab_Online.Controllers
                         };
                         mail.To.Add(model.Mail);
                         mail.Subject = "რეგისტრაციის დადასტურება";
-                        mail.Body = "გთხოვთ გადახვიდეთ ლინკზე საიტზე დარეგისტრირებისთვის localhost:52256/User/ActivationUser/" + newUser.ID;
+                        mail.Body = "გთხოვთ გადახვიდეთ ლინკზე საიტზე დარეგისტრირებისთვის http://localhost:52256/User/ActivationUser/" + newUser.ID;
                         System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient
                         {
                             Host = "in-v3.mailjet.com",
@@ -81,11 +98,11 @@ namespace Geo_Lab_Online.Controllers
                         };
                         smtpClient.Send(mail);
                     }
-                    catch (Exception) { return Json(1); }
+                    catch (Exception ex) { return Json(1); }
                     return Json(0);
 
                 }
-                catch (Exception) { return Json(1); }
+                catch (Exception ex) { return Json(1); }
             }
             // return Json(1);
         }

@@ -17,11 +17,11 @@ namespace Geo_Lab_Online.Filter
 
             if (user == null)
             {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Account" }, { "action", "Login" } });
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Home" }, { "action", "Index" } });
 
                
             }
-            else if (user.UserName != "Admin")
+            else if (user.UserName != "admin")
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Home" }, { "action", "Index" } });
             }

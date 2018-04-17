@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Geo_Lab_Online.Controllers
 {
-    //[AutorizationFilter]
+    [AutorizationFilter]
     public class DirectionController : Controller
     {
         GeolabOnlineDBDataContext db = new GeolabOnlineDBDataContext();

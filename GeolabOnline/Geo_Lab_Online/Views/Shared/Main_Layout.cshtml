@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="~/Content/MainCon/css/reset.css">
     <link rel="stylesheet" type="text/css" href="~/Content/MainCon/css/fonts.css">
+  
     <link rel="stylesheet" type="text/css" href="~/Content/MainCon/css/directions.css">
     <link rel="stylesheet" type="text/css" href="~/Content/MainCon/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="~/Content/MainCon/css/global.css">
@@ -131,16 +132,27 @@
                             <img src="~/Content/MainCon/images/search.png">
                         </button>
                     </div>
+                    @{ var s = (Geo_Lab_Online.Models.User)Session["login_user"];
+                                if ( s== null) {
                     <div class="login font-BPGNinoMtavruli">
                         <button class="login_btn">
                             შესვლა
                         </button>
-                    </div>
+                    </div> }
+                        else
+                        {
+                        <div class="logout font-BPGNinoMtavruli">
+                            <h5>გამარჯობა @s.FirstName </h5>
+                            <button class="logout_btn" id="logout-submit">
+                                გასვლა
+                            </button>
+                        </div>
+                            } }
                 </div>
             </div>
         </div>
     </header>
-
+    
     <div class="registration_bg">
         <div class="registration_wrapper clearfix">
             <button class="close_btn"> X </button>
@@ -163,7 +175,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+                                            <form id="login-form"  method="post" role="form" style="display: block;">
 
                                                 <div class="facebook_login">
                                                     <span class="fb_login_intro"> შესვლა ფეისბუკით</span>
@@ -191,7 +203,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
+                                            <form id="register-form"  method="post" role="form" style="display: none;">
                                                 <div class="form-group">
                                                     <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="სახელი" value="">
                                                 </div>
@@ -200,18 +212,20 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="იმეილი" value="">
+                                                    <input type="email" name="email" id="registeremail" tabindex="1" class="form-control" placeholder="იმეილი" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="პაროლი">
+                                                    <input type="password" name="userPassword" id="userPassword" tabindex="2" class="form-control" placeholder="გაიმეორეთ პაროლი">
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="გაიმეორეთ პაროლი">
                                                 </div>
+                                                <h5 style="color:red" id="div-for-error"></h5>
+                                                <h5 style="color:green" id="div-for-error1"></h5>
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-sm-6 col-sm-offset-3">
-                                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="დადასტურება">
+                                                            <input  name="register-submit" id="register-submit logintest" tabindex="4" class="form-control btn btn-register logintest" value="დადასტურება">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -242,5 +256,6 @@
     <script type="text/javascript" src="~/Content/MainCon/js/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/MainCon/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/MainCon/js/app.js"></script>
+    <script src="~/Content/MyJavaScript.js"></script>
 </body>
 </html>

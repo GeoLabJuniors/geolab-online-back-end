@@ -12,7 +12,8 @@ namespace Geo_Lab_Online.Models
         public string DirectionImage { get; set; }
         public string DirectionDesc { get; set; }
 
-        public List<CoursModel> Courses { get; set; }
+        public List<Course> Courses { get; set; }
+        public List<Subject> subject { get; set; }
 
         public string DirectionImageExt { get; set; }
 

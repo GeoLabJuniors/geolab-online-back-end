@@ -1,4 +1,5 @@
-﻿using Geo_Lab_Online.Models;
+﻿using Geo_Lab_Online.Filter;
+using Geo_Lab_Online.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Geo_Lab_Online.Controllers
-{    //[AutorizationFilter]
+{    [AutorizationFilter]
     public class CourseController : Controller
     {
         GeolabOnlineDBDataContext db = new GeolabOnlineDBDataContext();
