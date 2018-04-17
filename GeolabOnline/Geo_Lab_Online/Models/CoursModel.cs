@@ -14,6 +14,7 @@ namespace Geo_Lab_Online.Models
         
         public string YoutubeLink { get; set; }
         public String  Direction { get; set; }
+        public List<Course> List = new List<Course>();
 
     }
 }

@@ -24,9 +24,9 @@
                             <div class="desc_intro font-DejaVuSans">
                                @s.DirectionDescMini
                             </div>
-                            <button  class="more font-BPGNinoMtavruli"  >
-                                <a href="~/Home/Direction/@s.ID"> ვრცლად</a>
-                            </button>
+                           
+                                <form action="~/Home/Direction/@s.ID" method="get"><button class="more font-BPGNinoMtavruli"> ვრცლად </button></form>
+                           
                         </div>
                     </div>
                 </div> }
@@ -77,14 +77,16 @@
                     @foreach(var item in Model.LectureList) {
                     <div class="col-md-3">
                         <div class="teachers_box font-BPGNinoMtavruli">
-                            <a href="#teachers"><img src="http://geolab.edu.ge/@item.UserPhoto"  style="width: 163px;height: 164px;"></a>
+                            <a href="~/home/Lecture/@item.ID"><img src="http://geolab.edu.ge/@item.UserPhoto"  style="width: 163px;height: 164px;"></a>
                             <div class="teachers_desc">
                                 <div class="teachers_title">
-                                    <a href="#"> @item.FirstName  @item.LastName</a>
+                                    <a href="~/home/Lecture/@item.ID"> @item.FirstName  @item.LastName</a>
                                 </div>
-                                <div class="teachers_intro">
-                                   @item.UserSubjectName
-                                </div>
+                                
+                                    <div class="teachers_intro">
+                                        @item.UserSubjectName
+                                    </div>
+                              
                             </div>
                         </div>
                     </div> }

@@ -98,11 +98,11 @@ namespace Geo_Lab_Online.Controllers
                         };
                         smtpClient.Send(mail);
                     }
-                    catch (Exception ex) { return Json(1); }
+                    catch (Exception ) { return Json(1); }
                     return Json(0);
 
                 }
-                catch (Exception ex) { return Json(1); }
+                catch (Exception ) { return Json(1); }
             }
             // return Json(1);
         }

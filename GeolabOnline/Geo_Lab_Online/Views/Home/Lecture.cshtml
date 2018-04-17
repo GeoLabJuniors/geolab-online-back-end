@@ -1,0 +1,60 @@
+﻿@model Geo_Lab_Online.Models.LectureModel
+
+@{
+    ViewBag.Title = "Lecture";
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
+}
+
+<!-- Directions Page Start-->
+<div class="direction_cover design_cover" style="background-image:url('http://geolab.edu.ge/@Model._UserPhoto')">
+    <div class="direction_addres font-BPGNinoMtavruli">
+        <div class="container">
+            <a href="directions.html"> ლექტორი </a> / <a href="directions.html/#design"> @Model._FirstName </a>
+            @*<img src="~/Content/Image/@Model.DirectionImage@Model.DirectionImageExt">*@
+        </div>
+
+    </div>
+
+</div>
+
+<div class="direction_description">
+    <div class="container">
+        <span class="block_title font-BPGNinoMtavruli"> @Model._FirstName  @Model._LastName </span>
+        <div class="direction_intro font-DejaVuSans">
+            @Html.Raw(@Model._UserBio)
+            Email:@Model._UserMail
+        </div>
+    </div>
+</div>
+
+
+
+<div class="direction_leqciebi" id="direction_leqciebi">
+    <div class="container">
+
+        <div class="block_body font-BPGNinoMtavruli">
+            @foreach (var w in Model.OtherLecture)
+            {
+                <div class="col-md-4">
+                    <div class="lesson_box">
+                       
+                        <div class="lesson_box_in"><a href="~/home/Lecture/@w.ID"><img src="http://geolab.edu.ge/@w.UserPhoto" style="width: 332px;height: 332px;"></a> </div>
+                       
+                        <div class="lesson_desc">
+                            <div class="lesson_title">
+                                <a href="~/home/Lecture/@w.ID"> @w.FirstName @w.LastName</a>
+                            </div>
+                            <div class="lesson_intro">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>}
+
+
+
+        </div>
+    </div>
+</div>
+<!-- Directions Page End-->

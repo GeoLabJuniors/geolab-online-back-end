@@ -1,57 +1,55 @@
-﻿@model Geo_Lab_Online.Models.DirectionModel
+﻿@model Geo_Lab_Online.Models.CoursModel
+
+@{
+    ViewBag.Title = "Cours";
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
+}
+
 
 
 <!-- Directions Page Start-->
-<div class="direction_cover design_cover" style=" background-image:url('http://localhost:52256/Content/Image/@Model.DirectionImage@Model.DirectionImageExt') ">
+<div class="direction_cover design_cover" style="">
     <div class="direction_addres font-BPGNinoMtavruli">
         <div class="container">
-            <a href="directions.html"> მიმართულებები </a> / <a href="directions.html/#design"> @Model.DirectionTitle </a>
+            <a href="directions.html"> მიმართულებები </a> / <a href="directions.html/#design"> @Model.Title </a>
             @*<img src="~/Content/Image/@Model.DirectionImage@Model.DirectionImageExt">*@
         </div>
 
     </div>
-   
+
 </div>
 <div class="direction_description">
     <div class="container">
-        <span class="block_title font-BPGNinoMtavruli"> @Model.DirectionTitle </span>
+        <span class="block_title font-BPGNinoMtavruli"> @Model.Title </span>
         <div class="direction_intro font-DejaVuSans">
-           @Html.Raw(@Model.DirectionDesc)
-             </div>
+            @Html.Raw(@Model.Desc)
+        </div>
     </div>
 </div>
-<div class="directions_menu">
-    <div class="container">
-        <ul class="font-BPGNinoMtavruli">
-            @foreach (var s in Model.Courses)
-            {
-            <li><a href="#">  @s.CourseTitle</a></li> }
-           
-        </ul>
-    </div>
-</div>
+
 <div class="direction_leqciebi" id="direction_leqciebi">
     <div class="container">
 
         <div class="block_body font-BPGNinoMtavruli">
-       @foreach(var w in Model.subject) { 
+            @foreach (var w in Model.List)
+            {
                 <div class="col-md-4">
                     <div class="lesson_box">
                         <div class="lesson_box_in"> </div>
                         <div class="lesson_desc">
                             <div class="lesson_title">
-                                <a href=""> @w.SubjectTitle</a>
+                                <a href="~/home/Cours/@w.ID"> @w.CourseTitle</a>
                             </div>
                             <div class="lesson_intro">
-                               
+
                             </div>
                         </div>
 
                     </div>
                 </div>}
-              
-            
-          
+
+
+
         </div>
     </div>
 </div>
