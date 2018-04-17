@@ -115,15 +115,34 @@
                         <a href="~/home/index"> <img src="~/Content/MainCon/images/logo.png"></a>
                     </div>
                 </div>
+                
                 <div class="col-md-8">
                     <div class="mainmenu font-BPGNinoMtavruli  clearfix">
-                        <ul>
-                            <li><a href="#mimartulebebi">მიმართულებები </a></li>
-                            <li><a href="#leqciebi">ლექციები </a></li>
-                            <li><a href="#teachers">ლექტორები </a></li>
-                            <li><a href="#about">პროექტების შესახებ </a></li>
-                            <li><a href="#contact">კონტაქტი </a></li>
-                        </ul>
+                        @{
+                            if (this.Url.Action().ToString().Contains("Index")|| this.Url.Action().ToString().Contains("index"))
+                            {
+                                <ul>
+                                    <li><a href="#mimartulebebi">მიმართულებები </a></li>
+                                    <li><a href="#leqciebi">ლექციები </a></li>
+                                    <li><a href="#teachers">ლექტორები </a></li>
+                                    <li><a href="#about">პროექტების შესახებ </a></li>
+                                    <li><a href="#contact">კონტაქტი </a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul>
+                                    <li><a href="~/home/index">მიმართულებები </a></li>
+                                    <li><a href="~/home/index">ლექციები </a></li>
+                                    <li><a href="~/home/index">ლექტორები </a></li>
+                                    <li><a href="~/home/index">პროექტების შესახებ </a></li>
+                                    <li><a href="~/home/index">კონტაქტი </a></li>
+                                </ul>
+                            }
+
+                        }
+
+                        
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -244,7 +263,7 @@
     </div>
     @RenderBody()
 
-
+ 
 
     <footer>
         <div class="developers font-DejaVuSans">
