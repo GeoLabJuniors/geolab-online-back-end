@@ -1,0 +1,34 @@
+﻿@model Geo_Lab_Online.Models.Lesson
+
+@{
+    ViewBag.Title = "AddQuiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddQuiz</h2>
+
+<div class="container">
+    <div class="form-group">
+        <label for="usr">გაკვეთილის ID:</label>
+        <input type="text" class="form-control" id="LessonsTitel" value="@Model.ID" disabled>
+    </div>
+    <div class="form-group">
+        <label for="usr">გაკვეთილი:</label>
+        <input type="text" class="form-control" id="LessonsTitel1" value="@Model.LessonsTitel" disabled>
+    </div>
+    <div class="form-group">
+        <label for="comment">კითხვა:</label>
+        <textarea class="form-control" rows="5" id="quiz"></textarea>
+    </div>
+    პასუხები
+    <div class="input_fields_wrap">
+        <button class="add_field_button">პასუხების დამატება</button>
+        <div>@*<input type="text" name="mytext" class="users">*@</div>
+    </div>
+
+    <div class="form-group">
+        <label for="usr">სწორი პასუხი:</label>
+        <input type="number" class="correct form-control" id="correct">
+    </div>
+    <button type="button" class="savequiz btn btn-success" id="savequiz">Success</button>
+</div>

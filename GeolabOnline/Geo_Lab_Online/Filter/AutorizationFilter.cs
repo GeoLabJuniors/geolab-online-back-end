@@ -21,7 +21,7 @@ namespace Geo_Lab_Online.Filter
 
                
             }
-            else if (user.UserName != "admin")
+            else if (user.UserName != "admin@gmail.com")
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Home" }, { "action", "Index" } });
             }

@@ -1,0 +1,41 @@
+﻿@model Geo_Lab_Online.Models.Subject
+
+@{
+    ViewBag.Title = "AddLessons";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5>დაამატე გაკვეთილი</h5>
+<br />
+<div class="container">
+    <div class="form-group">
+        <label for="usr">კურსი:</label>
+        <input type="text" class="form-control" id="subjectid" value="@Model.SubjectTitle"  disabled>
+    </div>
+    <div class="form-group">
+        <label for="usr">გაკვეთილის დასახელება:</label>
+        <input type="text" class="form-control" id="usr">
+    </div>
+    <div class="form-group">
+        <label for="comment">გაკვეთილის აღწერა:</label>
+        <textarea class="form-control" rows="5" id="comment" ></textarea>
+    </div>
+    <div class="form-group">
+        <label for="usr">ვიდეოს ლინკი:</label>
+        <input type="text" class="form-control" id="videoURl">
+    </div>
+    <div class="form-group">
+        <label for="comment">აირჩიე გაკვეთილში გამოსაყენებელი ედიტორი:</label> <br />
+        <label class="radio-inline"><input type="radio" name="optradio" value="HTML/CSS">HTML/CSS</label>
+        <label class="radio-inline"><input type="radio" name="optradio"value="c#">c#</label>
+        <label class="radio-inline"><input type="radio" name="optradio"value="PHP">PHP</label>
+    </div>
+    <div class="form-group">
+        <label for="usr">რიგითი ნომერი:</label>
+        <input type="text" class="form-control" id="lessonselvl">
+    </div>
+    <button type="button" class="savelessons btn btn-success" id="savelessons">Success</button>
+    <!-- This will automatically post to your Index method (that is decorated with a HttpPost attribute) -->
+  
+  
+</div>

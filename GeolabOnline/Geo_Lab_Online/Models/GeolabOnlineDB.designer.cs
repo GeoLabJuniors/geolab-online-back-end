@@ -36,15 +36,6 @@ namespace Geo_Lab_Online.Models
     partial void InsertLessonQuiz(LessonQuiz instance);
     partial void UpdateLessonQuiz(LessonQuiz instance);
     partial void DeleteLessonQuiz(LessonQuiz instance);
-    partial void InsertLessonQuizAnswer(LessonQuizAnswer instance);
-    partial void UpdateLessonQuizAnswer(LessonQuizAnswer instance);
-    partial void DeleteLessonQuizAnswer(LessonQuizAnswer instance);
-    partial void InsertLesson(Lesson instance);
-    partial void UpdateLesson(Lesson instance);
-    partial void DeleteLesson(Lesson instance);
-    partial void InsertLessonsCodeType(LessonsCodeType instance);
-    partial void UpdateLessonsCodeType(LessonsCodeType instance);
-    partial void DeleteLessonsCodeType(LessonsCodeType instance);
     partial void InsertUserCode(UserCode instance);
     partial void UpdateUserCode(UserCode instance);
     partial void DeleteUserCode(UserCode instance);
@@ -72,9 +63,18 @@ namespace Geo_Lab_Online.Models
     partial void InsertDirection(Direction instance);
     partial void UpdateDirection(Direction instance);
     partial void DeleteDirection(Direction instance);
+    partial void InsertLesson(Lesson instance);
+    partial void UpdateLesson(Lesson instance);
+    partial void DeleteLesson(Lesson instance);
+    partial void InsertLessonsCodeType(LessonsCodeType instance);
+    partial void UpdateLessonsCodeType(LessonsCodeType instance);
+    partial void DeleteLessonsCodeType(LessonsCodeType instance);
     partial void InsertLecture(Lecture instance);
     partial void UpdateLecture(Lecture instance);
     partial void DeleteLecture(Lecture instance);
+    partial void InsertLessonQuizAnswer(LessonQuizAnswer instance);
+    partial void UpdateLessonQuizAnswer(LessonQuizAnswer instance);
+    partial void DeleteLessonQuizAnswer(LessonQuizAnswer instance);
     #endregion
 		
 		public GeolabOnlineDBDataContext() : 
@@ -120,30 +120,6 @@ namespace Geo_Lab_Online.Models
 			get
 			{
 				return this.GetTable<LessonQuiz>();
-			}
-		}
-		
-		public System.Data.Linq.Table<LessonQuizAnswer> LessonQuizAnswers
-		{
-			get
-			{
-				return this.GetTable<LessonQuizAnswer>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Lesson> Lessons
-		{
-			get
-			{
-				return this.GetTable<Lesson>();
-			}
-		}
-		
-		public System.Data.Linq.Table<LessonsCodeType> LessonsCodeTypes
-		{
-			get
-			{
-				return this.GetTable<LessonsCodeType>();
 			}
 		}
 		
@@ -219,11 +195,35 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<Lesson> Lessons
+		{
+			get
+			{
+				return this.GetTable<Lesson>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LessonsCodeType> LessonsCodeTypes
+		{
+			get
+			{
+				return this.GetTable<LessonsCodeType>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Lecture> Lectures
 		{
 			get
 			{
 				return this.GetTable<Lecture>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LessonQuizAnswer> LessonQuizAnswers
+		{
+			get
+			{
+				return this.GetTable<LessonQuizAnswer>();
 			}
 		}
 	}
@@ -612,9 +612,9 @@ namespace Geo_Lab_Online.Models
 		
 		private System.Nullable<System.DateTime> _CreateDate;
 		
-		private EntitySet<LessonQuizAnswer> _LessonQuizAnswers;
-		
 		private EntitySet<UserQuiz> _UserQuizs;
+		
+		private EntitySet<LessonQuizAnswer> _LessonQuizAnswers;
 		
 		private EntityRef<Lesson> _Lesson;
 		
@@ -634,8 +634,8 @@ namespace Geo_Lab_Online.Models
 		
 		public LessonQuiz()
 		{
-			this._LessonQuizAnswers = new EntitySet<LessonQuizAnswer>(new Action<LessonQuizAnswer>(this.attach_LessonQuizAnswers), new Action<LessonQuizAnswer>(this.detach_LessonQuizAnswers));
 			this._UserQuizs = new EntitySet<UserQuiz>(new Action<UserQuiz>(this.attach_UserQuizs), new Action<UserQuiz>(this.detach_UserQuizs));
+			this._LessonQuizAnswers = new EntitySet<LessonQuizAnswer>(new Action<LessonQuizAnswer>(this.attach_LessonQuizAnswers), new Action<LessonQuizAnswer>(this.detach_LessonQuizAnswers));
 			this._Lesson = default(EntityRef<Lesson>);
 			OnCreated();
 		}
@@ -724,19 +724,6 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuiz_LessonQuizAnswer", Storage="_LessonQuizAnswers", ThisKey="ID", OtherKey="QuizId")]
-		public EntitySet<LessonQuizAnswer> LessonQuizAnswers
-		{
-			get
-			{
-				return this._LessonQuizAnswers;
-			}
-			set
-			{
-				this._LessonQuizAnswers.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuiz_UserQuiz", Storage="_UserQuizs", ThisKey="ID", OtherKey="QuizId")]
 		public EntitySet<UserQuiz> UserQuizs
 		{
@@ -747,6 +734,19 @@ namespace Geo_Lab_Online.Models
 			set
 			{
 				this._UserQuizs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuiz_LessonQuizAnswer", Storage="_LessonQuizAnswers", ThisKey="ID", OtherKey="QuizId")]
+		public EntitySet<LessonQuizAnswer> LessonQuizAnswers
+		{
+			get
+			{
+				return this._LessonQuizAnswers;
+			}
+			set
+			{
+				this._LessonQuizAnswers.Assign(value);
 			}
 		}
 		
@@ -804,6 +804,18 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
+		private void attach_UserQuizs(UserQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.LessonQuiz = this;
+		}
+		
+		private void detach_UserQuizs(UserQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.LessonQuiz = null;
+		}
+		
 		private void attach_LessonQuizAnswers(LessonQuizAnswer entity)
 		{
 			this.SendPropertyChanging();
@@ -814,783 +826,6 @@ namespace Geo_Lab_Online.Models
 		{
 			this.SendPropertyChanging();
 			entity.LessonQuiz = null;
-		}
-		
-		private void attach_UserQuizs(UserQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.LessonQuiz = this;
-		}
-		
-		private void detach_UserQuizs(UserQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.LessonQuiz = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LessonQuizAnswers")]
-	public partial class LessonQuizAnswer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Answer;
-		
-		private string _Correct;
-		
-		private System.Nullable<int> _QuizId;
-		
-		private EntitySet<UserQuiz> _UserQuizs;
-		
-		private EntityRef<LessonQuiz> _LessonQuiz;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnAnswerChanging(string value);
-    partial void OnAnswerChanged();
-    partial void OnCorrectChanging(string value);
-    partial void OnCorrectChanged();
-    partial void OnQuizIdChanging(System.Nullable<int> value);
-    partial void OnQuizIdChanged();
-    #endregion
-		
-		public LessonQuizAnswer()
-		{
-			this._UserQuizs = new EntitySet<UserQuiz>(new Action<UserQuiz>(this.attach_UserQuizs), new Action<UserQuiz>(this.detach_UserQuizs));
-			this._LessonQuiz = default(EntityRef<LessonQuiz>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Answer", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Answer
-		{
-			get
-			{
-				return this._Answer;
-			}
-			set
-			{
-				if ((this._Answer != value))
-				{
-					this.OnAnswerChanging(value);
-					this.SendPropertyChanging();
-					this._Answer = value;
-					this.SendPropertyChanged("Answer");
-					this.OnAnswerChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correct", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
-		public string Correct
-		{
-			get
-			{
-				return this._Correct;
-			}
-			set
-			{
-				if ((this._Correct != value))
-				{
-					this.OnCorrectChanging(value);
-					this.SendPropertyChanging();
-					this._Correct = value;
-					this.SendPropertyChanged("Correct");
-					this.OnCorrectChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuizId", DbType="Int")]
-		public System.Nullable<int> QuizId
-		{
-			get
-			{
-				return this._QuizId;
-			}
-			set
-			{
-				if ((this._QuizId != value))
-				{
-					if (this._LessonQuiz.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQuizIdChanging(value);
-					this.SendPropertyChanging();
-					this._QuizId = value;
-					this.SendPropertyChanged("QuizId");
-					this.OnQuizIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuizAnswer_UserQuiz", Storage="_UserQuizs", ThisKey="ID", OtherKey="AnswerID")]
-		public EntitySet<UserQuiz> UserQuizs
-		{
-			get
-			{
-				return this._UserQuizs;
-			}
-			set
-			{
-				this._UserQuizs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuiz_LessonQuizAnswer", Storage="_LessonQuiz", ThisKey="QuizId", OtherKey="ID", IsForeignKey=true)]
-		public LessonQuiz LessonQuiz
-		{
-			get
-			{
-				return this._LessonQuiz.Entity;
-			}
-			set
-			{
-				LessonQuiz previousValue = this._LessonQuiz.Entity;
-				if (((previousValue != value) 
-							|| (this._LessonQuiz.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._LessonQuiz.Entity = null;
-						previousValue.LessonQuizAnswers.Remove(this);
-					}
-					this._LessonQuiz.Entity = value;
-					if ((value != null))
-					{
-						value.LessonQuizAnswers.Add(this);
-						this._QuizId = value.ID;
-					}
-					else
-					{
-						this._QuizId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("LessonQuiz");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_UserQuizs(UserQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.LessonQuizAnswer = this;
-		}
-		
-		private void detach_UserQuizs(UserQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.LessonQuizAnswer = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Lessons")]
-	public partial class Lesson : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _LessonsTitel;
-		
-		private string _LessonsDesc;
-		
-		private string _LessonsVideoLink;
-		
-		private int _SubjectId;
-		
-		private System.Nullable<System.DateTime> _CreateDate;
-		
-		private System.Nullable<int> _CodeType;
-		
-		private int _LessonsLvl;
-		
-		private EntitySet<LessonQuiz> _LessonQuizs;
-		
-		private EntitySet<UserCode> _UserCodes;
-		
-		private EntitySet<UserLesson> _UserLessons;
-		
-		private EntitySet<UserNote> _UserNotes;
-		
-		private EntityRef<LessonsCodeType> _LessonsCodeType;
-		
-		private EntityRef<Subject> _Subject;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnLessonsTitelChanging(string value);
-    partial void OnLessonsTitelChanged();
-    partial void OnLessonsDescChanging(string value);
-    partial void OnLessonsDescChanged();
-    partial void OnLessonsVideoLinkChanging(string value);
-    partial void OnLessonsVideoLinkChanged();
-    partial void OnSubjectIdChanging(int value);
-    partial void OnSubjectIdChanged();
-    partial void OnCreateDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreateDateChanged();
-    partial void OnCodeTypeChanging(System.Nullable<int> value);
-    partial void OnCodeTypeChanged();
-    partial void OnLessonsLvlChanging(int value);
-    partial void OnLessonsLvlChanged();
-    #endregion
-		
-		public Lesson()
-		{
-			this._LessonQuizs = new EntitySet<LessonQuiz>(new Action<LessonQuiz>(this.attach_LessonQuizs), new Action<LessonQuiz>(this.detach_LessonQuizs));
-			this._UserCodes = new EntitySet<UserCode>(new Action<UserCode>(this.attach_UserCodes), new Action<UserCode>(this.detach_UserCodes));
-			this._UserLessons = new EntitySet<UserLesson>(new Action<UserLesson>(this.attach_UserLessons), new Action<UserLesson>(this.detach_UserLessons));
-			this._UserNotes = new EntitySet<UserNote>(new Action<UserNote>(this.attach_UserNotes), new Action<UserNote>(this.detach_UserNotes));
-			this._LessonsCodeType = default(EntityRef<LessonsCodeType>);
-			this._Subject = default(EntityRef<Subject>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsTitel", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string LessonsTitel
-		{
-			get
-			{
-				return this._LessonsTitel;
-			}
-			set
-			{
-				if ((this._LessonsTitel != value))
-				{
-					this.OnLessonsTitelChanging(value);
-					this.SendPropertyChanging();
-					this._LessonsTitel = value;
-					this.SendPropertyChanged("LessonsTitel");
-					this.OnLessonsTitelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsDesc", DbType="NVarChar(MAX)")]
-		public string LessonsDesc
-		{
-			get
-			{
-				return this._LessonsDesc;
-			}
-			set
-			{
-				if ((this._LessonsDesc != value))
-				{
-					this.OnLessonsDescChanging(value);
-					this.SendPropertyChanging();
-					this._LessonsDesc = value;
-					this.SendPropertyChanged("LessonsDesc");
-					this.OnLessonsDescChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsVideoLink", DbType="VarChar(150)")]
-		public string LessonsVideoLink
-		{
-			get
-			{
-				return this._LessonsVideoLink;
-			}
-			set
-			{
-				if ((this._LessonsVideoLink != value))
-				{
-					this.OnLessonsVideoLinkChanging(value);
-					this.SendPropertyChanging();
-					this._LessonsVideoLink = value;
-					this.SendPropertyChanged("LessonsVideoLink");
-					this.OnLessonsVideoLinkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectId", DbType="Int NOT NULL")]
-		public int SubjectId
-		{
-			get
-			{
-				return this._SubjectId;
-			}
-			set
-			{
-				if ((this._SubjectId != value))
-				{
-					if (this._Subject.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSubjectIdChanging(value);
-					this.SendPropertyChanging();
-					this._SubjectId = value;
-					this.SendPropertyChanged("SubjectId");
-					this.OnSubjectIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="Date")]
-		public System.Nullable<System.DateTime> CreateDate
-		{
-			get
-			{
-				return this._CreateDate;
-			}
-			set
-			{
-				if ((this._CreateDate != value))
-				{
-					this.OnCreateDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreateDate = value;
-					this.SendPropertyChanged("CreateDate");
-					this.OnCreateDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodeType", DbType="Int")]
-		public System.Nullable<int> CodeType
-		{
-			get
-			{
-				return this._CodeType;
-			}
-			set
-			{
-				if ((this._CodeType != value))
-				{
-					if (this._LessonsCodeType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCodeTypeChanging(value);
-					this.SendPropertyChanging();
-					this._CodeType = value;
-					this.SendPropertyChanged("CodeType");
-					this.OnCodeTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsLvl", DbType="Int NOT NULL")]
-		public int LessonsLvl
-		{
-			get
-			{
-				return this._LessonsLvl;
-			}
-			set
-			{
-				if ((this._LessonsLvl != value))
-				{
-					this.OnLessonsLvlChanging(value);
-					this.SendPropertyChanging();
-					this._LessonsLvl = value;
-					this.SendPropertyChanged("LessonsLvl");
-					this.OnLessonsLvlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_LessonQuiz", Storage="_LessonQuizs", ThisKey="ID", OtherKey="LessonId")]
-		public EntitySet<LessonQuiz> LessonQuizs
-		{
-			get
-			{
-				return this._LessonQuizs;
-			}
-			set
-			{
-				this._LessonQuizs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserCode", Storage="_UserCodes", ThisKey="ID", OtherKey="LessonId")]
-		public EntitySet<UserCode> UserCodes
-		{
-			get
-			{
-				return this._UserCodes;
-			}
-			set
-			{
-				this._UserCodes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserLesson", Storage="_UserLessons", ThisKey="ID", OtherKey="LessonsId")]
-		public EntitySet<UserLesson> UserLessons
-		{
-			get
-			{
-				return this._UserLessons;
-			}
-			set
-			{
-				this._UserLessons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserNote", Storage="_UserNotes", ThisKey="ID", OtherKey="LessonsId")]
-		public EntitySet<UserNote> UserNotes
-		{
-			get
-			{
-				return this._UserNotes;
-			}
-			set
-			{
-				this._UserNotes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonsCodeType_Lesson", Storage="_LessonsCodeType", ThisKey="CodeType", OtherKey="ID", IsForeignKey=true)]
-		public LessonsCodeType LessonsCodeType
-		{
-			get
-			{
-				return this._LessonsCodeType.Entity;
-			}
-			set
-			{
-				LessonsCodeType previousValue = this._LessonsCodeType.Entity;
-				if (((previousValue != value) 
-							|| (this._LessonsCodeType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._LessonsCodeType.Entity = null;
-						previousValue.Lessons.Remove(this);
-					}
-					this._LessonsCodeType.Entity = value;
-					if ((value != null))
-					{
-						value.Lessons.Add(this);
-						this._CodeType = value.ID;
-					}
-					else
-					{
-						this._CodeType = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("LessonsCodeType");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_Lesson", Storage="_Subject", ThisKey="SubjectId", OtherKey="ID", IsForeignKey=true)]
-		public Subject Subject
-		{
-			get
-			{
-				return this._Subject.Entity;
-			}
-			set
-			{
-				Subject previousValue = this._Subject.Entity;
-				if (((previousValue != value) 
-							|| (this._Subject.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Subject.Entity = null;
-						previousValue.Lessons.Remove(this);
-					}
-					this._Subject.Entity = value;
-					if ((value != null))
-					{
-						value.Lessons.Add(this);
-						this._SubjectId = value.ID;
-					}
-					else
-					{
-						this._SubjectId = default(int);
-					}
-					this.SendPropertyChanged("Subject");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_LessonQuizs(LessonQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = this;
-		}
-		
-		private void detach_LessonQuizs(LessonQuiz entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = null;
-		}
-		
-		private void attach_UserCodes(UserCode entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = this;
-		}
-		
-		private void detach_UserCodes(UserCode entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = null;
-		}
-		
-		private void attach_UserLessons(UserLesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = this;
-		}
-		
-		private void detach_UserLessons(UserLesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = null;
-		}
-		
-		private void attach_UserNotes(UserNote entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = this;
-		}
-		
-		private void detach_UserNotes(UserNote entity)
-		{
-			this.SendPropertyChanging();
-			entity.Lesson = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LessonsCodeType")]
-	public partial class LessonsCodeType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.Data.Linq.Binary _SourceType;
-		
-		private string _source;
-		
-		private EntitySet<Lesson> _Lessons;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnSourceTypeChanging(System.Data.Linq.Binary value);
-    partial void OnSourceTypeChanged();
-    partial void OnsourceChanging(string value);
-    partial void OnsourceChanged();
-    #endregion
-		
-		public LessonsCodeType()
-		{
-			this._Lessons = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons), new Action<Lesson>(this.detach_Lessons));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceType", DbType="VarBinary(10)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary SourceType
-		{
-			get
-			{
-				return this._SourceType;
-			}
-			set
-			{
-				if ((this._SourceType != value))
-				{
-					this.OnSourceTypeChanging(value);
-					this.SendPropertyChanging();
-					this._SourceType = value;
-					this.SendPropertyChanged("SourceType");
-					this.OnSourceTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_source", DbType="NVarChar(MAX)")]
-		public string source
-		{
-			get
-			{
-				return this._source;
-			}
-			set
-			{
-				if ((this._source != value))
-				{
-					this.OnsourceChanging(value);
-					this.SendPropertyChanging();
-					this._source = value;
-					this.SendPropertyChanged("source");
-					this.OnsourceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonsCodeType_Lesson", Storage="_Lessons", ThisKey="ID", OtherKey="CodeType")]
-		public EntitySet<Lesson> Lessons
-		{
-			get
-			{
-				return this._Lessons;
-			}
-			set
-			{
-				this._Lessons.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Lessons(Lesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.LessonsCodeType = this;
-		}
-		
-		private void detach_Lessons(Lesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.LessonsCodeType = null;
 		}
 	}
 	
@@ -1608,9 +843,9 @@ namespace Geo_Lab_Online.Models
 		
 		private System.Nullable<int> _LessonId;
 		
-		private EntityRef<Lesson> _Lesson;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Lesson> _Lesson;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1628,8 +863,8 @@ namespace Geo_Lab_Online.Models
 		
 		public UserCode()
 		{
-			this._Lesson = default(EntityRef<Lesson>);
 			this._User = default(EntityRef<User>);
+			this._Lesson = default(EntityRef<Lesson>);
 			OnCreated();
 		}
 		
@@ -1721,40 +956,6 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserCode", Storage="_Lesson", ThisKey="LessonId", OtherKey="ID", IsForeignKey=true)]
-		public Lesson Lesson
-		{
-			get
-			{
-				return this._Lesson.Entity;
-			}
-			set
-			{
-				Lesson previousValue = this._Lesson.Entity;
-				if (((previousValue != value) 
-							|| (this._Lesson.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Lesson.Entity = null;
-						previousValue.UserCodes.Remove(this);
-					}
-					this._Lesson.Entity = value;
-					if ((value != null))
-					{
-						value.UserCodes.Add(this);
-						this._LessonId = value.ID;
-					}
-					else
-					{
-						this._LessonId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Lesson");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserCode", Storage="_User", ThisKey="UserId", OtherKey="ID", IsForeignKey=true)]
 		public User User
 		{
@@ -1785,6 +986,40 @@ namespace Geo_Lab_Online.Models
 						this._UserId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserCode", Storage="_Lesson", ThisKey="LessonId", OtherKey="ID", IsForeignKey=true)]
+		public Lesson Lesson
+		{
+			get
+			{
+				return this._Lesson.Entity;
+			}
+			set
+			{
+				Lesson previousValue = this._Lesson.Entity;
+				if (((previousValue != value) 
+							|| (this._Lesson.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Lesson.Entity = null;
+						previousValue.UserCodes.Remove(this);
+					}
+					this._Lesson.Entity = value;
+					if ((value != null))
+					{
+						value.UserCodes.Add(this);
+						this._LessonId = value.ID;
+					}
+					else
+					{
+						this._LessonId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Lesson");
 				}
 			}
 		}
@@ -2016,9 +1251,9 @@ namespace Geo_Lab_Online.Models
 		
 		private int _ID;
 		
-		private EntityRef<Lesson> _Lesson;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Lesson> _Lesson;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2036,8 +1271,8 @@ namespace Geo_Lab_Online.Models
 		
 		public UserLesson()
 		{
-			this._Lesson = default(EntityRef<Lesson>);
 			this._User = default(EntityRef<User>);
+			this._Lesson = default(EntityRef<Lesson>);
 			OnCreated();
 		}
 		
@@ -2129,40 +1364,6 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserLesson", Storage="_Lesson", ThisKey="LessonsId", OtherKey="ID", IsForeignKey=true)]
-		public Lesson Lesson
-		{
-			get
-			{
-				return this._Lesson.Entity;
-			}
-			set
-			{
-				Lesson previousValue = this._Lesson.Entity;
-				if (((previousValue != value) 
-							|| (this._Lesson.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Lesson.Entity = null;
-						previousValue.UserLessons.Remove(this);
-					}
-					this._Lesson.Entity = value;
-					if ((value != null))
-					{
-						value.UserLessons.Add(this);
-						this._LessonsId = value.ID;
-					}
-					else
-					{
-						this._LessonsId = default(int);
-					}
-					this.SendPropertyChanged("Lesson");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserLesson", Storage="_User", ThisKey="UserId", OtherKey="ID", IsForeignKey=true)]
 		public User User
 		{
@@ -2193,6 +1394,40 @@ namespace Geo_Lab_Online.Models
 						this._UserId = default(int);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserLesson", Storage="_Lesson", ThisKey="LessonsId", OtherKey="ID", IsForeignKey=true)]
+		public Lesson Lesson
+		{
+			get
+			{
+				return this._Lesson.Entity;
+			}
+			set
+			{
+				Lesson previousValue = this._Lesson.Entity;
+				if (((previousValue != value) 
+							|| (this._Lesson.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Lesson.Entity = null;
+						previousValue.UserLessons.Remove(this);
+					}
+					this._Lesson.Entity = value;
+					if ((value != null))
+					{
+						value.UserLessons.Add(this);
+						this._LessonsId = value.ID;
+					}
+					else
+					{
+						this._LessonsId = default(int);
+					}
+					this.SendPropertyChanged("Lesson");
 				}
 			}
 		}
@@ -2232,9 +1467,9 @@ namespace Geo_Lab_Online.Models
 		
 		private System.Nullable<int> _UserId;
 		
-		private EntityRef<Lesson> _Lesson;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Lesson> _Lesson;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2252,8 +1487,8 @@ namespace Geo_Lab_Online.Models
 		
 		public UserNote()
 		{
-			this._Lesson = default(EntityRef<Lesson>);
 			this._User = default(EntityRef<User>);
+			this._Lesson = default(EntityRef<Lesson>);
 			OnCreated();
 		}
 		
@@ -2345,40 +1580,6 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserNote", Storage="_Lesson", ThisKey="LessonsId", OtherKey="ID", IsForeignKey=true)]
-		public Lesson Lesson
-		{
-			get
-			{
-				return this._Lesson.Entity;
-			}
-			set
-			{
-				Lesson previousValue = this._Lesson.Entity;
-				if (((previousValue != value) 
-							|| (this._Lesson.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Lesson.Entity = null;
-						previousValue.UserNotes.Remove(this);
-					}
-					this._Lesson.Entity = value;
-					if ((value != null))
-					{
-						value.UserNotes.Add(this);
-						this._LessonsId = value.ID;
-					}
-					else
-					{
-						this._LessonsId = default(int);
-					}
-					this.SendPropertyChanged("Lesson");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserNote", Storage="_User", ThisKey="UserId", OtherKey="ID", IsForeignKey=true)]
 		public User User
 		{
@@ -2409,6 +1610,40 @@ namespace Geo_Lab_Online.Models
 						this._UserId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserNote", Storage="_Lesson", ThisKey="LessonsId", OtherKey="ID", IsForeignKey=true)]
+		public Lesson Lesson
+		{
+			get
+			{
+				return this._Lesson.Entity;
+			}
+			set
+			{
+				Lesson previousValue = this._Lesson.Entity;
+				if (((previousValue != value) 
+							|| (this._Lesson.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Lesson.Entity = null;
+						previousValue.UserNotes.Remove(this);
+					}
+					this._Lesson.Entity = value;
+					if ((value != null))
+					{
+						value.UserNotes.Add(this);
+						this._LessonsId = value.ID;
+					}
+					else
+					{
+						this._LessonsId = default(int);
+					}
+					this.SendPropertyChanged("Lesson");
 				}
 			}
 		}
@@ -2450,9 +1685,9 @@ namespace Geo_Lab_Online.Models
 		
 		private EntityRef<LessonQuiz> _LessonQuiz;
 		
-		private EntityRef<LessonQuizAnswer> _LessonQuizAnswer;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<LessonQuizAnswer> _LessonQuizAnswer;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2471,8 +1706,8 @@ namespace Geo_Lab_Online.Models
 		public UserQuiz()
 		{
 			this._LessonQuiz = default(EntityRef<LessonQuiz>);
-			this._LessonQuizAnswer = default(EntityRef<LessonQuizAnswer>);
 			this._User = default(EntityRef<User>);
+			this._LessonQuizAnswer = default(EntityRef<LessonQuizAnswer>);
 			OnCreated();
 		}
 		
@@ -2602,40 +1837,6 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuizAnswer_UserQuiz", Storage="_LessonQuizAnswer", ThisKey="AnswerID", OtherKey="ID", IsForeignKey=true)]
-		public LessonQuizAnswer LessonQuizAnswer
-		{
-			get
-			{
-				return this._LessonQuizAnswer.Entity;
-			}
-			set
-			{
-				LessonQuizAnswer previousValue = this._LessonQuizAnswer.Entity;
-				if (((previousValue != value) 
-							|| (this._LessonQuizAnswer.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._LessonQuizAnswer.Entity = null;
-						previousValue.UserQuizs.Remove(this);
-					}
-					this._LessonQuizAnswer.Entity = value;
-					if ((value != null))
-					{
-						value.UserQuizs.Add(this);
-						this._AnswerID = value.ID;
-					}
-					else
-					{
-						this._AnswerID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("LessonQuizAnswer");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_UserQuiz", Storage="_User", ThisKey="UserId", OtherKey="ID", IsForeignKey=true)]
 		public User User
 		{
@@ -2666,6 +1867,40 @@ namespace Geo_Lab_Online.Models
 						this._UserId = default(int);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuizAnswer_UserQuiz", Storage="_LessonQuizAnswer", ThisKey="AnswerID", OtherKey="ID", IsForeignKey=true)]
+		public LessonQuizAnswer LessonQuizAnswer
+		{
+			get
+			{
+				return this._LessonQuizAnswer.Entity;
+			}
+			set
+			{
+				LessonQuizAnswer previousValue = this._LessonQuizAnswer.Entity;
+				if (((previousValue != value) 
+							|| (this._LessonQuizAnswer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LessonQuizAnswer.Entity = null;
+						previousValue.UserQuizs.Remove(this);
+					}
+					this._LessonQuizAnswer.Entity = value;
+					if ((value != null))
+					{
+						value.UserQuizs.Add(this);
+						this._AnswerID = value.ID;
+					}
+					else
+					{
+						this._AnswerID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LessonQuizAnswer");
 				}
 			}
 		}
@@ -2897,11 +2132,11 @@ namespace Geo_Lab_Online.Models
 		
 		private string _SubjectVideoLink;
 		
-		private EntitySet<Lesson> _Lessons;
-		
 		private EntitySet<UserCurse> _UserCurses;
 		
 		private EntitySet<CourseSubject> _CourseSubjects;
+		
+		private EntitySet<Lesson> _Lessons;
 		
 		private EntitySet<Lecture> _Lectures;
 		
@@ -2921,9 +2156,9 @@ namespace Geo_Lab_Online.Models
 		
 		public Subject()
 		{
-			this._Lessons = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons), new Action<Lesson>(this.detach_Lessons));
 			this._UserCurses = new EntitySet<UserCurse>(new Action<UserCurse>(this.attach_UserCurses), new Action<UserCurse>(this.detach_UserCurses));
 			this._CourseSubjects = new EntitySet<CourseSubject>(new Action<CourseSubject>(this.attach_CourseSubjects), new Action<CourseSubject>(this.detach_CourseSubjects));
+			this._Lessons = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons), new Action<Lesson>(this.detach_Lessons));
 			this._Lectures = new EntitySet<Lecture>(new Action<Lecture>(this.attach_Lectures), new Action<Lecture>(this.detach_Lectures));
 			OnCreated();
 		}
@@ -3008,19 +2243,6 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_Lesson", Storage="_Lessons", ThisKey="ID", OtherKey="SubjectId")]
-		public EntitySet<Lesson> Lessons
-		{
-			get
-			{
-				return this._Lessons;
-			}
-			set
-			{
-				this._Lessons.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_UserCurse", Storage="_UserCurses", ThisKey="ID", OtherKey="SubjectId")]
 		public EntitySet<UserCurse> UserCurses
 		{
@@ -3044,6 +2266,19 @@ namespace Geo_Lab_Online.Models
 			set
 			{
 				this._CourseSubjects.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_Lesson", Storage="_Lessons", ThisKey="ID", OtherKey="SubjectId")]
+		public EntitySet<Lesson> Lessons
+		{
+			get
+			{
+				return this._Lessons;
+			}
+			set
+			{
+				this._Lessons.Assign(value);
 			}
 		}
 		
@@ -3080,18 +2315,6 @@ namespace Geo_Lab_Online.Models
 			}
 		}
 		
-		private void attach_Lessons(Lesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.Subject = this;
-		}
-		
-		private void detach_Lessons(Lesson entity)
-		{
-			this.SendPropertyChanging();
-			entity.Subject = null;
-		}
-		
 		private void attach_UserCurses(UserCurse entity)
 		{
 			this.SendPropertyChanging();
@@ -3111,6 +2334,18 @@ namespace Geo_Lab_Online.Models
 		}
 		
 		private void detach_CourseSubjects(CourseSubject entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subject = null;
+		}
+		
+		private void attach_Lessons(Lesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subject = this;
+		}
+		
+		private void detach_Lessons(Lesson entity)
 		{
 			this.SendPropertyChanging();
 			entity.Subject = null;
@@ -3566,6 +2801,568 @@ namespace Geo_Lab_Online.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Lessons")]
+	public partial class Lesson : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _LessonsTitel;
+		
+		private string _LessonsDesc;
+		
+		private string _LessonsVideoLink;
+		
+		private int _SubjectId;
+		
+		private System.Nullable<System.DateTime> _CreateDate;
+		
+		private System.Nullable<int> _CodeType;
+		
+		private int _LessonsLvl;
+		
+		private EntitySet<LessonQuiz> _LessonQuizs;
+		
+		private EntitySet<UserCode> _UserCodes;
+		
+		private EntitySet<UserLesson> _UserLessons;
+		
+		private EntitySet<UserNote> _UserNotes;
+		
+		private EntityRef<Subject> _Subject;
+		
+		private EntityRef<LessonsCodeType> _LessonsCodeType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnLessonsTitelChanging(string value);
+    partial void OnLessonsTitelChanged();
+    partial void OnLessonsDescChanging(string value);
+    partial void OnLessonsDescChanged();
+    partial void OnLessonsVideoLinkChanging(string value);
+    partial void OnLessonsVideoLinkChanged();
+    partial void OnSubjectIdChanging(int value);
+    partial void OnSubjectIdChanged();
+    partial void OnCreateDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreateDateChanged();
+    partial void OnCodeTypeChanging(System.Nullable<int> value);
+    partial void OnCodeTypeChanged();
+    partial void OnLessonsLvlChanging(int value);
+    partial void OnLessonsLvlChanged();
+    #endregion
+		
+		public Lesson()
+		{
+			this._LessonQuizs = new EntitySet<LessonQuiz>(new Action<LessonQuiz>(this.attach_LessonQuizs), new Action<LessonQuiz>(this.detach_LessonQuizs));
+			this._UserCodes = new EntitySet<UserCode>(new Action<UserCode>(this.attach_UserCodes), new Action<UserCode>(this.detach_UserCodes));
+			this._UserLessons = new EntitySet<UserLesson>(new Action<UserLesson>(this.attach_UserLessons), new Action<UserLesson>(this.detach_UserLessons));
+			this._UserNotes = new EntitySet<UserNote>(new Action<UserNote>(this.attach_UserNotes), new Action<UserNote>(this.detach_UserNotes));
+			this._Subject = default(EntityRef<Subject>);
+			this._LessonsCodeType = default(EntityRef<LessonsCodeType>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsTitel", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LessonsTitel
+		{
+			get
+			{
+				return this._LessonsTitel;
+			}
+			set
+			{
+				if ((this._LessonsTitel != value))
+				{
+					this.OnLessonsTitelChanging(value);
+					this.SendPropertyChanging();
+					this._LessonsTitel = value;
+					this.SendPropertyChanged("LessonsTitel");
+					this.OnLessonsTitelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsDesc", DbType="NVarChar(MAX)")]
+		public string LessonsDesc
+		{
+			get
+			{
+				return this._LessonsDesc;
+			}
+			set
+			{
+				if ((this._LessonsDesc != value))
+				{
+					this.OnLessonsDescChanging(value);
+					this.SendPropertyChanging();
+					this._LessonsDesc = value;
+					this.SendPropertyChanged("LessonsDesc");
+					this.OnLessonsDescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsVideoLink", DbType="VarChar(150)")]
+		public string LessonsVideoLink
+		{
+			get
+			{
+				return this._LessonsVideoLink;
+			}
+			set
+			{
+				if ((this._LessonsVideoLink != value))
+				{
+					this.OnLessonsVideoLinkChanging(value);
+					this.SendPropertyChanging();
+					this._LessonsVideoLink = value;
+					this.SendPropertyChanged("LessonsVideoLink");
+					this.OnLessonsVideoLinkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubjectId", DbType="Int NOT NULL")]
+		public int SubjectId
+		{
+			get
+			{
+				return this._SubjectId;
+			}
+			set
+			{
+				if ((this._SubjectId != value))
+				{
+					if (this._Subject.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSubjectIdChanging(value);
+					this.SendPropertyChanging();
+					this._SubjectId = value;
+					this.SendPropertyChanged("SubjectId");
+					this.OnSubjectIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="Date")]
+		public System.Nullable<System.DateTime> CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodeType", DbType="Int")]
+		public System.Nullable<int> CodeType
+		{
+			get
+			{
+				return this._CodeType;
+			}
+			set
+			{
+				if ((this._CodeType != value))
+				{
+					if (this._LessonsCodeType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodeTypeChanging(value);
+					this.SendPropertyChanging();
+					this._CodeType = value;
+					this.SendPropertyChanged("CodeType");
+					this.OnCodeTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LessonsLvl", DbType="Int NOT NULL")]
+		public int LessonsLvl
+		{
+			get
+			{
+				return this._LessonsLvl;
+			}
+			set
+			{
+				if ((this._LessonsLvl != value))
+				{
+					this.OnLessonsLvlChanging(value);
+					this.SendPropertyChanging();
+					this._LessonsLvl = value;
+					this.SendPropertyChanged("LessonsLvl");
+					this.OnLessonsLvlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_LessonQuiz", Storage="_LessonQuizs", ThisKey="ID", OtherKey="LessonId")]
+		public EntitySet<LessonQuiz> LessonQuizs
+		{
+			get
+			{
+				return this._LessonQuizs;
+			}
+			set
+			{
+				this._LessonQuizs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserCode", Storage="_UserCodes", ThisKey="ID", OtherKey="LessonId")]
+		public EntitySet<UserCode> UserCodes
+		{
+			get
+			{
+				return this._UserCodes;
+			}
+			set
+			{
+				this._UserCodes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserLesson", Storage="_UserLessons", ThisKey="ID", OtherKey="LessonsId")]
+		public EntitySet<UserLesson> UserLessons
+		{
+			get
+			{
+				return this._UserLessons;
+			}
+			set
+			{
+				this._UserLessons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lesson_UserNote", Storage="_UserNotes", ThisKey="ID", OtherKey="LessonsId")]
+		public EntitySet<UserNote> UserNotes
+		{
+			get
+			{
+				return this._UserNotes;
+			}
+			set
+			{
+				this._UserNotes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_Lesson", Storage="_Subject", ThisKey="SubjectId", OtherKey="ID", IsForeignKey=true)]
+		public Subject Subject
+		{
+			get
+			{
+				return this._Subject.Entity;
+			}
+			set
+			{
+				Subject previousValue = this._Subject.Entity;
+				if (((previousValue != value) 
+							|| (this._Subject.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Subject.Entity = null;
+						previousValue.Lessons.Remove(this);
+					}
+					this._Subject.Entity = value;
+					if ((value != null))
+					{
+						value.Lessons.Add(this);
+						this._SubjectId = value.ID;
+					}
+					else
+					{
+						this._SubjectId = default(int);
+					}
+					this.SendPropertyChanged("Subject");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonsCodeType_Lesson", Storage="_LessonsCodeType", ThisKey="CodeType", OtherKey="ID", IsForeignKey=true)]
+		public LessonsCodeType LessonsCodeType
+		{
+			get
+			{
+				return this._LessonsCodeType.Entity;
+			}
+			set
+			{
+				LessonsCodeType previousValue = this._LessonsCodeType.Entity;
+				if (((previousValue != value) 
+							|| (this._LessonsCodeType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LessonsCodeType.Entity = null;
+						previousValue.Lessons.Remove(this);
+					}
+					this._LessonsCodeType.Entity = value;
+					if ((value != null))
+					{
+						value.Lessons.Add(this);
+						this._CodeType = value.ID;
+					}
+					else
+					{
+						this._CodeType = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LessonsCodeType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LessonQuizs(LessonQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = this;
+		}
+		
+		private void detach_LessonQuizs(LessonQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = null;
+		}
+		
+		private void attach_UserCodes(UserCode entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = this;
+		}
+		
+		private void detach_UserCodes(UserCode entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = null;
+		}
+		
+		private void attach_UserLessons(UserLesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = this;
+		}
+		
+		private void detach_UserLessons(UserLesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = null;
+		}
+		
+		private void attach_UserNotes(UserNote entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = this;
+		}
+		
+		private void detach_UserNotes(UserNote entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lesson = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LessonsCodeType")]
+	public partial class LessonsCodeType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _SourceType;
+		
+		private string _source;
+		
+		private EntitySet<Lesson> _Lessons;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnSourceTypeChanging(string value);
+    partial void OnSourceTypeChanged();
+    partial void OnsourceChanging(string value);
+    partial void OnsourceChanged();
+    #endregion
+		
+		public LessonsCodeType()
+		{
+			this._Lessons = new EntitySet<Lesson>(new Action<Lesson>(this.attach_Lessons), new Action<Lesson>(this.detach_Lessons));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceType", DbType="NVarChar(50)")]
+		public string SourceType
+		{
+			get
+			{
+				return this._SourceType;
+			}
+			set
+			{
+				if ((this._SourceType != value))
+				{
+					this.OnSourceTypeChanging(value);
+					this.SendPropertyChanging();
+					this._SourceType = value;
+					this.SendPropertyChanged("SourceType");
+					this.OnSourceTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_source", DbType="NVarChar(MAX)")]
+		public string source
+		{
+			get
+			{
+				return this._source;
+			}
+			set
+			{
+				if ((this._source != value))
+				{
+					this.OnsourceChanging(value);
+					this.SendPropertyChanging();
+					this._source = value;
+					this.SendPropertyChanged("source");
+					this.OnsourceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonsCodeType_Lesson", Storage="_Lessons", ThisKey="ID", OtherKey="CodeType")]
+		public EntitySet<Lesson> Lessons
+		{
+			get
+			{
+				return this._Lessons;
+			}
+			set
+			{
+				this._Lessons.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Lessons(Lesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.LessonsCodeType = this;
+		}
+		
+		private void detach_Lessons(Lesson entity)
+		{
+			this.SendPropertyChanging();
+			entity.LessonsCodeType = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Lecture")]
 	public partial class Lecture : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3834,6 +3631,209 @@ namespace Geo_Lab_Online.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LessonQuizAnswers")]
+	public partial class LessonQuizAnswer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Answer;
+		
+		private string _Correct;
+		
+		private System.Nullable<int> _QuizId;
+		
+		private EntitySet<UserQuiz> _UserQuizs;
+		
+		private EntityRef<LessonQuiz> _LessonQuiz;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnAnswerChanging(string value);
+    partial void OnAnswerChanged();
+    partial void OnCorrectChanging(string value);
+    partial void OnCorrectChanged();
+    partial void OnQuizIdChanging(System.Nullable<int> value);
+    partial void OnQuizIdChanged();
+    #endregion
+		
+		public LessonQuizAnswer()
+		{
+			this._UserQuizs = new EntitySet<UserQuiz>(new Action<UserQuiz>(this.attach_UserQuizs), new Action<UserQuiz>(this.detach_UserQuizs));
+			this._LessonQuiz = default(EntityRef<LessonQuiz>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Answer", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Answer
+		{
+			get
+			{
+				return this._Answer;
+			}
+			set
+			{
+				if ((this._Answer != value))
+				{
+					this.OnAnswerChanging(value);
+					this.SendPropertyChanging();
+					this._Answer = value;
+					this.SendPropertyChanged("Answer");
+					this.OnAnswerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correct", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
+		public string Correct
+		{
+			get
+			{
+				return this._Correct;
+			}
+			set
+			{
+				if ((this._Correct != value))
+				{
+					this.OnCorrectChanging(value);
+					this.SendPropertyChanging();
+					this._Correct = value;
+					this.SendPropertyChanged("Correct");
+					this.OnCorrectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuizId", DbType="Int")]
+		public System.Nullable<int> QuizId
+		{
+			get
+			{
+				return this._QuizId;
+			}
+			set
+			{
+				if ((this._QuizId != value))
+				{
+					if (this._LessonQuiz.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuizIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuizId = value;
+					this.SendPropertyChanged("QuizId");
+					this.OnQuizIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuizAnswer_UserQuiz", Storage="_UserQuizs", ThisKey="ID", OtherKey="AnswerID")]
+		public EntitySet<UserQuiz> UserQuizs
+		{
+			get
+			{
+				return this._UserQuizs;
+			}
+			set
+			{
+				this._UserQuizs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LessonQuiz_LessonQuizAnswer", Storage="_LessonQuiz", ThisKey="QuizId", OtherKey="ID", IsForeignKey=true)]
+		public LessonQuiz LessonQuiz
+		{
+			get
+			{
+				return this._LessonQuiz.Entity;
+			}
+			set
+			{
+				LessonQuiz previousValue = this._LessonQuiz.Entity;
+				if (((previousValue != value) 
+							|| (this._LessonQuiz.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LessonQuiz.Entity = null;
+						previousValue.LessonQuizAnswers.Remove(this);
+					}
+					this._LessonQuiz.Entity = value;
+					if ((value != null))
+					{
+						value.LessonQuizAnswers.Add(this);
+						this._QuizId = value.ID;
+					}
+					else
+					{
+						this._QuizId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LessonQuiz");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_UserQuizs(UserQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.LessonQuizAnswer = this;
+		}
+		
+		private void detach_UserQuizs(UserQuiz entity)
+		{
+			this.SendPropertyChanging();
+			entity.LessonQuizAnswer = null;
 		}
 	}
 }

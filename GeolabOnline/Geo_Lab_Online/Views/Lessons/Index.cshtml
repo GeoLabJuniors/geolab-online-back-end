@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Geo_Lab_Online.Models.Lesson>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+          სათაური
+        </th>
+        
+        <th>
+           ვიდეო
+        </th>
+        <th>
+           საგანი
+        </th>
+      
+        <th>
+          კოდი
+        </th>
+        <th>
+           პრიორიტეტი
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LessonsTitel)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.LessonsVideoLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectId)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CreateDate, "{0:dd/MM/yyyy}")
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.LessonsCodeType.SourceType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LessonsLvl)
+        </td>
+        <td>
+            @Html.ActionLink("ცვლილება", "Edit", new { id=item.ID })|@Html.ActionLink("წაშლა", "Delete", new { id=item.ID })|@Html.ActionLink("კითხვები", "Quiz", new { id = item.ID })
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+        </td>
+    </tr>
+}
+
+</table>

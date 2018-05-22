@@ -39,9 +39,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Desc)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.YoutubeLink)
         </th>
@@ -56,9 +54,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Desc)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.YoutubeLink)
         </td>
@@ -68,7 +64,8 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Add Lessons", "AddLessons", new { id=item.Id })|
+            @Html.ActionLink("გაკვეთილების ნახვა","Index", "Lessons", new { id = item.Id },null)
         </td>
     </tr>
 }

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Geo_Lab_Online.Controllers
 {
-    [AutorizationFilter]
+    //  [AutorizationFilter]
     public class SubjectController : Controller
     {
         GeolabOnlineDBDataContext db = new GeolabOnlineDBDataContext();
@@ -27,7 +27,7 @@ namespace Geo_Lab_Online.Controllers
                     Id = i.ID,
                     Title = i.SubjectTitle,
                     YoutubeLink = i.SubjectVideoLink,
-                  //   Cours = db.Courses.Where(a => a.ID == i.CourseID).Select(a => a.CourseTitle).FirstOrDefault().ToString()
+                    //   Cours = db.Courses.Where(a => a.ID == i.CourseID).Select(a => a.CourseTitle).FirstOrDefault().ToString()
                 });
             }
             var s = db.Courses.ToList();
@@ -45,9 +45,9 @@ namespace Geo_Lab_Online.Controllers
                     SubjectDesc = subjectModel.Desc,
                     SubjectTitle = subjectModel.Title,
                     SubjectVideoLink = subjectModel.YoutubeLink,
-                  //  CourseID = Int32.Parse(subjectModel.Cours)
+                    //  CourseID = Int32.Parse(subjectModel.Cours)
                 };
-           
+
                 db.Subjects.InsertOnSubmit(subject);
                 db.SubmitChanges();
             }
@@ -57,6 +57,7 @@ namespace Geo_Lab_Online.Controllers
 
         public ActionResult Delete(int id)
         {
+            
             db.Subjects.DeleteOnSubmit((db.Subjects.Where(a => a.ID == id).FirstOrDefault()));
             db.SubmitChanges();
             return RedirectToAction("Index");
@@ -93,6 +94,40 @@ namespace Geo_Lab_Online.Controllers
             //course.CourseID = Int32.Parse(model.Cours);
             db.SubmitChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult AddLessons(int id)
+        {
+
+
+            return View(db.Subjects.Where(a => a.ID == id).FirstOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult AddLessons(AddLessonsModel model)
+        {
+            int code_id = db.LessonsCodeTypes.Where(a => a.SourceType == model.CodeEditor).Select(b => b.ID).FirstOrDefault();
+        
+            var SubjectId = db.Subjects.Where(k => k.SubjectTitle == model.subjectid).Select(b => b.ID).FirstOrDefault();
+            Lesson lesson = new Lesson()
+            {
+               
+                CreateDate = DateTime.Now,
+                LessonsTitel = model.Title,
+                LessonsDesc = model.Desc,
+                LessonsLvl = model.lessonselvl,
+                LessonsVideoLink = model.videoURl,
+                SubjectId = SubjectId
+            };
+            if (code_id == 0) { }
+            else
+            {
+                lesson.CodeType = code_id;
+            }
+            db.Lessons.InsertOnSubmit(lesson);
+            db.SubmitChanges();
+
+           return RedirectToAction( "Index", "Lessons",new { id = SubjectId });
         }
     }
 }

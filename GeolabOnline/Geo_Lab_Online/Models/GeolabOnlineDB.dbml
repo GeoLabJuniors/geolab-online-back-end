@@ -23,45 +23,9 @@
       <Column Name="LessonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Question" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
       <Column Name="CreateDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="LessonQuiz_LessonQuizAnswer" Member="LessonQuizAnswers" ThisKey="ID" OtherKey="QuizId" Type="LessonQuizAnswer" />
       <Association Name="LessonQuiz_UserQuiz" Member="UserQuizs" ThisKey="ID" OtherKey="QuizId" Type="UserQuiz" />
+      <Association Name="LessonQuiz_LessonQuizAnswer" Member="LessonQuizAnswers" ThisKey="ID" OtherKey="QuizId" Type="LessonQuizAnswer" />
       <Association Name="Lesson_LessonQuiz" Member="Lesson" ThisKey="LessonId" OtherKey="ID" Type="Lesson" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.LessonQuizAnswers" Member="LessonQuizAnswers">
-    <Type Name="LessonQuizAnswer">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Answer" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Correct" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
-      <Column Name="QuizId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="LessonQuizAnswer_UserQuiz" Member="UserQuizs" ThisKey="ID" OtherKey="AnswerID" Type="UserQuiz" />
-      <Association Name="LessonQuiz_LessonQuizAnswer" Member="LessonQuiz" ThisKey="QuizId" OtherKey="ID" Type="LessonQuiz" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Lessons" Member="Lessons">
-    <Type Name="Lesson">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LessonsTitel" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="LessonsDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="LessonsVideoLink" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Column Name="SubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CreateDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="CodeType" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LessonsLvl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Lesson_LessonQuiz" Member="LessonQuizs" ThisKey="ID" OtherKey="LessonId" Type="LessonQuiz" />
-      <Association Name="Lesson_UserCode" Member="UserCodes" ThisKey="ID" OtherKey="LessonId" Type="UserCode" />
-      <Association Name="Lesson_UserLesson" Member="UserLessons" ThisKey="ID" OtherKey="LessonsId" Type="UserLesson" />
-      <Association Name="Lesson_UserNote" Member="UserNotes" ThisKey="ID" OtherKey="LessonsId" Type="UserNote" />
-      <Association Name="LessonsCodeType_Lesson" Member="LessonsCodeType" ThisKey="CodeType" OtherKey="ID" Type="LessonsCodeType" IsForeignKey="true" />
-      <Association Name="Subject_Lesson" Member="Subject" ThisKey="SubjectId" OtherKey="ID" Type="Subject" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.LessonsCodeType" Member="LessonsCodeTypes">
-    <Type Name="LessonsCodeType">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SourceType" Type="System.Data.Linq.Binary" DbType="VarBinary(10)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="source" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="LessonsCodeType_Lesson" Member="Lessons" ThisKey="ID" OtherKey="CodeType" Type="Lesson" />
     </Type>
   </Table>
   <Table Name="dbo.UserCodes" Member="UserCodes">
@@ -70,8 +34,8 @@
       <Column Name="Code" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="LessonId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Lesson_UserCode" Member="Lesson" ThisKey="LessonId" OtherKey="ID" Type="Lesson" IsForeignKey="true" />
       <Association Name="User_UserCode" Member="User" ThisKey="UserId" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Lesson_UserCode" Member="Lesson" ThisKey="LessonId" OtherKey="ID" Type="Lesson" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UserCurse" Member="UserCurses">
@@ -89,8 +53,8 @@
       <Column Name="LessonsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="LessonsStatus" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Lesson_UserLesson" Member="Lesson" ThisKey="LessonsId" OtherKey="ID" Type="Lesson" IsForeignKey="true" />
       <Association Name="User_UserLesson" Member="User" ThisKey="UserId" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Lesson_UserLesson" Member="Lesson" ThisKey="LessonsId" OtherKey="ID" Type="Lesson" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UserNotes" Member="UserNotes">
@@ -99,8 +63,8 @@
       <Column Name="LessonsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="NoteText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Lesson_UserNote" Member="Lesson" ThisKey="LessonsId" OtherKey="ID" Type="Lesson" IsForeignKey="true" />
       <Association Name="User_UserNote" Member="User" ThisKey="UserId" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Lesson_UserNote" Member="Lesson" ThisKey="LessonsId" OtherKey="ID" Type="Lesson" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.UserQuiz" Member="UserQuizs">
@@ -110,8 +74,8 @@
       <Column Name="AnswerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Association Name="LessonQuiz_UserQuiz" Member="LessonQuiz" ThisKey="QuizId" OtherKey="ID" Type="LessonQuiz" IsForeignKey="true" />
-      <Association Name="LessonQuizAnswer_UserQuiz" Member="LessonQuizAnswer" ThisKey="AnswerID" OtherKey="ID" Type="LessonQuizAnswer" IsForeignKey="true" />
       <Association Name="User_UserQuiz" Member="User" ThisKey="UserId" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="LessonQuizAnswer_UserQuiz" Member="LessonQuizAnswer" ThisKey="AnswerID" OtherKey="ID" Type="LessonQuizAnswer" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CourseSubject" Member="CourseSubjects">
@@ -129,9 +93,9 @@
       <Column Name="SubjectTitle" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
       <Column Name="SubjectDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="SubjectVideoLink" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
-      <Association Name="Subject_Lesson" Member="Lessons" ThisKey="ID" OtherKey="SubjectId" Type="Lesson" />
       <Association Name="Subject_UserCurse" Member="UserCurses" ThisKey="ID" OtherKey="SubjectId" Type="UserCurse" />
       <Association Name="Subject_CourseSubject" Member="CourseSubjects" ThisKey="ID" OtherKey="SubjectID" Type="CourseSubject" />
+      <Association Name="Subject_Lesson" Member="Lessons" ThisKey="ID" OtherKey="SubjectId" Type="Lesson" />
       <Association Name="Subject_Lecture" Member="Lectures" ThisKey="ID" OtherKey="UserSubject" Type="Lecture" />
     </Type>
   </Table>
@@ -157,6 +121,32 @@
       <Association Name="Direction_Course" Member="Courses" ThisKey="ID" OtherKey="DirectionId" Type="Course" />
     </Type>
   </Table>
+  <Table Name="dbo.Lessons" Member="Lessons">
+    <Type Name="Lesson">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LessonsTitel" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LessonsDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LessonsVideoLink" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="SubjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CodeType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LessonsLvl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Lesson_LessonQuiz" Member="LessonQuizs" ThisKey="ID" OtherKey="LessonId" Type="LessonQuiz" />
+      <Association Name="Lesson_UserCode" Member="UserCodes" ThisKey="ID" OtherKey="LessonId" Type="UserCode" />
+      <Association Name="Lesson_UserLesson" Member="UserLessons" ThisKey="ID" OtherKey="LessonsId" Type="UserLesson" />
+      <Association Name="Lesson_UserNote" Member="UserNotes" ThisKey="ID" OtherKey="LessonsId" Type="UserNote" />
+      <Association Name="Subject_Lesson" Member="Subject" ThisKey="SubjectId" OtherKey="ID" Type="Subject" IsForeignKey="true" />
+      <Association Name="LessonsCodeType_Lesson" Member="LessonsCodeType" ThisKey="CodeType" OtherKey="ID" Type="LessonsCodeType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LessonsCodeType" Member="LessonsCodeTypes">
+    <Type Name="LessonsCodeType">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SourceType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="source" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="LessonsCodeType_Lesson" Member="Lessons" ThisKey="ID" OtherKey="CodeType" Type="Lesson" />
+    </Type>
+  </Table>
   <Table Name="dbo.Lecture" Member="Lectures">
     <Type Name="Lecture">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -168,6 +158,16 @@
       <Column Name="UserSubject" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UserSubjectName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="Subject_Lecture" Member="Subject" ThisKey="UserSubject" OtherKey="ID" Type="Subject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LessonQuizAnswers" Member="LessonQuizAnswers">
+    <Type Name="LessonQuizAnswer">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Answer" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Correct" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="QuizId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LessonQuizAnswer_UserQuiz" Member="UserQuizs" ThisKey="ID" OtherKey="AnswerID" Type="UserQuiz" />
+      <Association Name="LessonQuiz_LessonQuizAnswer" Member="LessonQuiz" ThisKey="QuizId" OtherKey="ID" Type="LessonQuiz" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
